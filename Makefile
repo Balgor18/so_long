@@ -17,12 +17,7 @@ CYAN = $'\x1b[36m
 WHITE = $'\x1b[37m
 
 SRC =	error.c \
-		init.c \
-		main.c \
-		parse_map.c \
-		start_mlx.c \
-		trash.c \
-		verif.c
+		main.c
 
 OBJ = ${SRC:.c=.o}
 

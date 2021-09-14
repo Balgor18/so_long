@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/14 16:56:01 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/14 17:19:22 by fcatinau         ###   ########.fr       */
+/*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
+/*   Updated: 2021/09/14 17:20:05 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-int	main(int agc, char **argv)
-{
-	(void)argv;
-	if (agc < 2)
-		return (error_miss_arg());
-	return (EXIT_SUCCESS);
-}
+# include "includes/libft/libft.h"
+# include "includes/mlx/mlx.h"
+
+# define TRUE 1
+# define FALSE 0
+
+/*
+** ===============================================
+** ===================  Error  ===================
+** ===============================================
+*/
+int	error_miss_arg(void);
+#endif
