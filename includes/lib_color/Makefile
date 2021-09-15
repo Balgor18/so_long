@@ -6,7 +6,7 @@
 #    By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/09 15:35:09 by fcatinau          #+#    #+#              #
-#    Updated: 2021/08/13 11:50:03 by fcatinau         ###   ########.fr        #
+#    Updated: 2021/09/15 18:36:11 by fcatinau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,11 @@ SRC = black.c\
 OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+		ar rc $(NAME) $(OBJ)
+		ranlib $(NAME)
 
 %.o: %.c
-	@$(CC) -I. -o $@ -c $? $(CFLAGS)
+	$(CC) -I. -o $@ -c $? $(CFLAGS)
 
 all: $(NAME)
 
@@ -65,4 +65,4 @@ norme :
 	norminette -R CheckForbiddenSourceHeader $(SRC)
 	norminette -R CheckDefine color.h
 
-.PHONY: clean fclean $(NAME)
+.PHONY: clean fclean
