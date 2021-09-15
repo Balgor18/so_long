@@ -6,23 +6,11 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 21:14:58 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/07/08 16:15:45 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:19:54 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*join_str(char const *char1, char const *char2, int lire)
 {

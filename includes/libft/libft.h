@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:32:40 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/05/29 16:47:21 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/15 14:20:36 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 char			*ft_strchr(const char *s, int c);
-int				ft_strlen(char *c);
+size_t			ft_strlen(const char *c);
 char			*ft_strdup(char *src);
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
 size_t			ft_strlcpy(char *dest, const char *src, size_t size);
