@@ -20,6 +20,7 @@ SRC =	init.c\
 		error.c \
 		main.c \
 		parse_map.c \
+		start_mlx.c \
 		trash.c \
 		verif.c
 
@@ -35,7 +36,7 @@ $(NAME) : $(OBJ)
 
 lib_color :
 	@echo "$(YELLOW)Compiling lib_color...$(WHITE)"
-	@make -s -C includes/lib_color/
+	@make -C includes/lib_color/
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 
 libft :
@@ -45,7 +46,7 @@ libft :
 
 mlx :
 	@echo "\n$(YELLOW)Compiling mlx...$(WHITE)"
-	@make -s -C includes/mlx
+	@make -C includes/mlx
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 
 %.o : %.c
