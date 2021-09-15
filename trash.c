@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   trash.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/13 21:20:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/15 11:55:14 by fcatinau         ###   ########.fr       */
+/*   Created: 2021/08/24 12:34:41 by fcatinau          #+#    #+#             */
+/*   Updated: 2021/09/15 14:29:20 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "includes/lib_color/color.h"
 
-int	error_miss_arg(void)
+void	free_map(t_map *map)
 {
-	ft_putstr_fd("usage : ./so_long [", 2);
-	cyan();
-	ft_putstr_fd("file", 2);
-	reset();
-	white();
-	ft_putchar_fd('.', 2);
-	reset();
-	red();
-	ft_putstr_fd("ber", 2);
-	reset();
-	ft_putstr_fd("]\n", 2);
-	return (EXIT_FAILURE);
+	size_t	i;
+
+	i = -1;
+	while (++i < map->len)
+		free(map->map[i]);
+	free(map->map);
 }
 
-int	error_msg(char *s)
+void	free_mlx(t_mlx	*mlx)
 {
-	red();
-	ft_putstr_fd(s, 2);
-	reset();
-	return (FALSE);
+	//if (mlx->mlx_img)
+	//	mlx_destroy_image(mlx->mlx, mlx->mlx_img);
+	if (mlx->mlx_win)
+		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	if (mlx->mlx)
+		free(mlx->mlx);
+}
+
+void	ft_trash(t_all *all)
+{
+	free_map(&all->map);
+	free_mlx(&all->mlx);
 }

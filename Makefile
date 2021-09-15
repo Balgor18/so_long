@@ -16,8 +16,12 @@ PURPLE = $'\x1b[35m
 CYAN = $'\x1b[36m
 WHITE = $'\x1b[37m
 
-SRC =	error.c \
-		main.c
+SRC =	init.c\
+		error.c \
+		main.c \
+		parse_map.c \
+		trash.c \
+		verif.c
 
 OBJ = ${SRC:.c=.o}
 
