@@ -39,6 +39,7 @@ echo -n "${Purple}./so_long maps/t.b-> ${Reset}"; ./so_long maps/t.b
 echo -n "${Purple}./so_long maps/t.be-> ${Reset}"; ./so_long maps/t.be
 echo -n "${Purple}./so_long maps/t.berasdf-> ${Reset}"; ./so_long maps/t.berasdf
 END
+echo "\n${Green}SO LONG ERROR MANAGING TESTS WITH VALGRIND :${Reset}\n"; sleep 3;
 echo -n "${Purple}valgrind --leak-check=full ./so_long -> ${Reset}"; valgrind --leak-check=full ./so_long
 echo -n "${Purple}valgrind --leak-check=full ./so_long test-> ${Reset}"; valgrind --leak-check=full ./so_long test
 echo -n "${Purple}valgrind --leak-check=full ./so_long includes/-> ${Reset}"; valgrind --leak-check=full ./so_long includes/
@@ -46,4 +47,11 @@ echo -n "${Purple}valgrind --leak-check=full ./so_long maps/t.b-> ${Reset}"; val
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/t.be-> ${Reset}"; valgrind --leak-check=full ./so_long maps/t.be
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/t.berasdf-> ${Reset}"; valgrind --leak-check=full ./so_long maps/t.berasdf
 
+echo "\n${Green}SO LONG ERROR MAP :${Reset}\n"; sleep 3;
+echo -n "${Purple}./so_long maps/error_dimension.ber-> ${Reset}"; ./so_long maps/error_dimension.ber
+echo -n "${Purple}valgrind --leak-check=full ./so_long maps/error_dimension.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/error_dimension.ber
+
+echo "\n${Green}SO LONG TESTS :${Reset}\n"; sleep 3;
+echo -n "${Purple}./so_long maps/test.ber-> ${Reset}"; ./so_long maps/test.ber
+echo -n "${Purple}valgrind --leak-check=full ./so_long maps/test.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/test.ber
 valgrind --leak-check=full ./so_long maps/test.ber
