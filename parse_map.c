@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/16 12:56:59 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/16 17:27:43 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ void	parse_map(char *s, t_all *all)
 	{
 		close(fd);
 		error_msg("Error open file\n");
+		exit (EXIT_FAILURE);
+	}
+	close(fd);
+	fd = open(s, O_DIRECTORY);
+	if (fd > 0)
+	{
+		close(fd);
+		error_msg("Error directory\n");
 		exit (EXIT_FAILURE);
 	}
 	close(fd);

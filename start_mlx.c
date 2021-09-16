@@ -6,12 +6,11 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/15 18:44:25 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/16 17:32:31 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	key_hook(int key, t_all *all)
 {

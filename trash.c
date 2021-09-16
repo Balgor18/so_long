@@ -6,12 +6,12 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:34:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/16 12:51:45 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/16 17:32:38 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <stdio.h>
+
 void	free_map(t_map *map)
 {
 	size_t	i;
