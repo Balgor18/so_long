@@ -32,7 +32,8 @@ all: lib_color mlx libft $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\n$(YELLOW)Compiling $(NAME)...$(WHITE)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor
+#-Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 #	valgrind --leak-check=full --show-leak-kinds=all ./so_long
 
