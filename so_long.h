@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/15 15:38:23 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/16 12:11:03 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 # define SUCCES 1
 # define FAILURE 0
 
-# define STRERR 2
+# define STDERR 2
 # define STDOUT 1
+
 /*
 ** ===============================================
 ** ===================  Struct  ==================
@@ -124,6 +125,7 @@ int		verif_file_name(char *s);
 ** ===============================================
 */
 void	ft_trash(t_all *all);
+void	free_map(t_map *map);
 
 /*
 ** ===============================================
@@ -139,5 +141,6 @@ int		error_msg(char *s);
 ** ===============================================
 */
 int		verif_file_name(char *s);
+int		verif_map(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 21:20:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/15 15:38:38 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/16 11:07:24 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,26 @@
 
 int	error_miss_arg(void)
 {
-	ft_putstr_fd("usage : ./so_long [", STRERR);
+	ft_putstr_fd("usage : ./so_long [", STDERR);
 	cyan();
-	ft_putstr_fd("file", STRERR);
+	ft_putstr_fd("file", STDERR);
 	reset();
 	white();
-	ft_putchar_fd('.', STRERR);
+	ft_putchar_fd('.', STDERR);
 	reset();
 	red();
-	ft_putstr_fd("ber", STRERR);
+	ft_putstr_fd("ber", STDERR);
 	reset();
-	ft_putstr_fd("]\n", STRERR);
+	ft_putstr_fd("]\n", STDERR);
 	return (EXIT_FAILURE);
 }
 
+// Error msg display the string s on STDERR
+// AND return 0 for FALSE
 int	error_msg(char *s)
 {
 	red();
-	ft_putstr_fd(s, STRERR);
+	ft_putstr_fd(s, STDERR);
 	reset();
 	return (FALSE);
 }

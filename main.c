@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:56:01 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/15 18:42:57 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/16 12:10:46 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int agc, char **argv)
 	init_struct(&all);
 	if (!parse_map(argv[1], &all))
 	{
-		ft_trash(&all);
+		free_map(&all.map);
 		return (EXIT_FAILURE);
 	}
 	start_mlx(&all.mlx, &all);
