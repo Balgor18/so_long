@@ -20,7 +20,9 @@ SRC =	init.c\
 		error.c \
 		main.c \
 		parse_map.c \
-		start_mlx.c \
+		trash.c \
+		verif.c
+		#start_mlx.c \
 		trash.c \
 		verif.c
 

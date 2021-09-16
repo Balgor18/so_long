@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/16 11:59:29 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/16 12:47:02 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	split_map(char *s, t_all *all)
 	return (SUCCES);
 }
 
-int	parse_map(char *s, t_all *all)
+void	parse_map(char *s, t_all *all)
 {
 	int	fd;
 
@@ -59,11 +59,12 @@ int	parse_map(char *s, t_all *all)
 	if (fd < 0)
 	{
 		close(fd);
-		return (error_msg("Error open file\n"));
+		error_msg("Error open file\n");
+		exit (EXIT_FAILURE);
 	}
 	close(fd);
 	split_map(s, all);
 	if (!verif_map(&all->map))
 		return (0);
-	return (TRUE);
+	return ;
 }
