@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/16 18:29:43 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/17 10:23:08 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ int	verif_file_name(char *s)
 	return (1);
 }
 
+int	verif_line(char *s, char c)
+{
+	while (*s)
+	{
+		if (*s != c)
+			return (FALSE);
+		s++;
+	}
+	return (TRUE);
+}
+
 int	verif_map(t_map *map)
 {
 	size_t	map_len;
@@ -39,6 +50,9 @@ int	verif_map(t_map *map)
 			return (error_msg("not a good size map\n"));
 		if (map->map[map_len][0] != '1' || map->map[map_len][len - 1] != '1')
 			return (error_msg("map not close by '1'\n"));
+		if (map_len == 0 || map_len == map->len - 1)
+			if (!verif_line(map->map[map_len], '1'))
+				return (error_msg("map not close by '1'\n"));
 		map_len++;
 	}
 	return (TRUE);
