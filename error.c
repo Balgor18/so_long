@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 21:20:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/17 10:29:24 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/17 13:51:04 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	error_miss_arg(void)
 int	error_msg(char *s)
 {
 	red();
-	ft_putstr_fd("Error : ", 2);
+	ft_putstr_fd("Error\n", 2);
 	reset();
 	white();
 	ft_putstr_fd(s, STDERR);

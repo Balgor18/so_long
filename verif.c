@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/17 10:23:08 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/17 14:15:15 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ int	verif_file_name(char *s)
 {
 	size_t	len;
 
+	if (s[0] == '.')
+		s++;
+	printf("%s\n", s);
 	while (*s != '.')
+		s++;
+	if (*s == '.' && *(s - 1) == '/')
 		s++;
 	len = ft_strlen(s);
 	if (len < 4)
@@ -37,6 +42,32 @@ int	verif_line(char *s, char c)
 	return (TRUE);
 }
 
+int	verif_char_map(char *s)
+{
+	int	count_p;
+	int	count_e;
+	int	count_c;
+
+	count_p = 0;
+	count_c = 0;
+	count_e = 0;
+	while (*s)
+	{
+		if (*s == 'C')
+			count_c++;
+		if (*s == 'P')
+			count_p++;
+		if (*s == 'E')
+			count_e++;
+		if (*s != 'C' && *s != '1' && *s != '0' && *s != 'E' && *s != 'P')
+			return (FALSE);
+		if (count_c == 0 || count_e == 0 || count_p == 0 || count_p > 1)
+			return (FALSE);
+		s++;
+	}
+	return (TRUE);
+}
+
 int	verif_map(t_map *map)
 {
 	size_t	map_len;
@@ -46,6 +77,8 @@ int	verif_map(t_map *map)
 	len = ft_strlen(map->map[map_len]);
 	while (map_len < map->len)
 	{
+		if (!verif_char_map(map->map[map_len]))
+			return (error_msg("Bad characther in map\n"));
 		if (ft_strlen(map->map[map_len]) != len)
 			return (error_msg("not a good size map\n"));
 		if (map->map[map_len][0] != '1' || map->map[map_len][len - 1] != '1')
