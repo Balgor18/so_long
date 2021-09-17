@@ -6,12 +6,25 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 21:20:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/17 13:51:04 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/17 19:54:26 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "includes/lib_color/color.h"
+
+int	error_char(int p, int e, int c)
+{
+	if (c == 0)
+		error_msg("No collectible in map\n");
+	else if (e == 0)
+		error_msg("No exit in map\n");
+	else if (p == 0)
+		error_msg("No player position in map\n");
+	else if (p > 1)
+		error_msg("Too much player position in map\n");
+	return (FALSE);
+}
 
 int	error_miss_arg(void)
 {

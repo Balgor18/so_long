@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/16 12:47:12 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/17 20:02:39 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 */
+
+typedef struct s_char_map
+{
+	int	count_p;
+	int	count_e;
+	int	count_c;
+}				t_char_map;
 
 typedef struct s_img
 {
@@ -89,6 +96,7 @@ typedef struct s_all
 ** ===============================================
 */
 void	init_struct(t_all *all);
+void	init_char_map(t_char_map *cm);
 
 /*
 ** ===============================================
@@ -104,6 +112,7 @@ void	start_mlx(t_mlx *mlx, t_all *all);
 */
 int		error_miss_arg(void);
 int		error_msg(char *s);
+int		error_char(int p, int e, int c);
 
 /*
 ** ===============================================

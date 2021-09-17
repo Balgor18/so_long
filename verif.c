@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/17 14:15:15 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/17 20:03:32 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	verif_file_name(char *s)
 
 	if (s[0] == '.')
 		s++;
-	printf("%s\n", s);
 	while (*s != '.')
 		s++;
 	if (*s == '.' && *(s - 1) == '/')
@@ -42,27 +41,18 @@ int	verif_line(char *s, char c)
 	return (TRUE);
 }
 
-int	verif_char_map(char *s)
+int	verif_char_map(char *s, t_char_map *sc)
 {
-	int	count_p;
-	int	count_e;
-	int	count_c;
-
-	count_p = 0;
-	count_c = 0;
-	count_e = 0;
 	while (*s)
 	{
 		if (*s == 'C')
-			count_c++;
+			sc->count_c++;
 		if (*s == 'P')
-			count_p++;
+			sc->count_p++;
 		if (*s == 'E')
-			count_e++;
+			sc->count_e++;
 		if (*s != 'C' && *s != '1' && *s != '0' && *s != 'E' && *s != 'P')
-			return (FALSE);
-		if (count_c == 0 || count_e == 0 || count_p == 0 || count_p > 1)
-			return (FALSE);
+			return (error_msg("Bad characther in map\n"));
 		s++;
 	}
 	return (TRUE);
@@ -70,15 +60,17 @@ int	verif_char_map(char *s)
 
 int	verif_map(t_map *map)
 {
-	size_t	map_len;
-	size_t	len;
+	size_t		map_len;
+	size_t		len;
+	t_char_map	cm;
 
+	init_char_map(&cm);
 	map_len = 0;
 	len = ft_strlen(map->map[map_len]);
 	while (map_len < map->len)
 	{
-		if (!verif_char_map(map->map[map_len]))
-			return (error_msg("Bad characther in map\n"));
+		if (!verif_char_map(map->map[map_len], &cm))
+			return (FALSE);
 		if (ft_strlen(map->map[map_len]) != len)
 			return (error_msg("not a good size map\n"));
 		if (map->map[map_len][0] != '1' || map->map[map_len][len - 1] != '1')
@@ -88,5 +80,7 @@ int	verif_map(t_map *map)
 				return (error_msg("map not close by '1'\n"));
 		map_len++;
 	}
+	if (cm.count_c == 0 || cm.count_e == 0 || cm.count_p == 0 || cm.count_p > 1)
+		return (error_char(cm.count_p, cm.count_e, cm.count_c));
 	return (TRUE);
 }
