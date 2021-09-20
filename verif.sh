@@ -34,12 +34,19 @@ sleep 3; make; make clean; make fclean; make re
 echo "\n${Green}SO LONG ERROR MANAGING TESTS:${Reset}\n"; sleep 3;
 
 echo -n "${Purple}./so_long -> ${Reset}"; ./so_long
+sleep 3;
 echo -n "${Purple}./so_long test-> ${Reset}"; ./so_long test
+sleep 3;
 echo -n "${Purple}./so_long includes/-> ${Reset}"; ./so_long includes/
+sleep 3;
 echo -n "${Purple}./so_long maps/t.b-> ${Reset}"; ./so_long maps/t.b
+sleep 3;
 echo -n "${Purple}./so_long maps/.ber-> ${Reset}"; ./so_long maps/.ber
+sleep 3;
 echo -n "${Purple}./so_long maps/t.be-> ${Reset}"; ./so_long maps/t.be
+sleep 3;
 echo -n "${Purple}./so_long maps/t.berasdf-> ${Reset}"; ./so_long maps/t.berasdf
+
 : <<'END'
 echo "\n${Green}SO LONG ERROR MANAGING TESTS OUTPUT:${Reset}\n"; sleep 3;
 echo -n "${Purple}./so_long > /dev/null 2>tmp-> ${Reset}"; ./so_long >/dev/null 2>tmp
@@ -49,24 +56,44 @@ echo -n "${Purple}./so_long maps/t.b-> ${Reset}"; ./so_long maps/t.b
 echo -n "${Purple}./so_long maps/t.be-> ${Reset}"; ./so_long maps/t.be
 echo -n "${Purple}./so_long maps/t.berasdf-> ${Reset}"; ./so_long maps/t.berasdf
 END
+
+read -n1 -p "`tput setaf 46`Continue ?`tput sgr0` [y/N]" input
+
 echo "\n${Green}SO LONG ERROR MANAGING TESTS WITH VALGRIND :${Reset}\n"; sleep 3;
 echo -n "${Purple}valgrind --leak-check=full ./so_long -> ${Reset}"; valgrind --leak-check=full ./so_long
+sleep 3;
 echo -n "${Purple}valgrind --leak-check=full ./so_long test-> ${Reset}"; valgrind --leak-check=full ./so_long test
+sleep 3;
 echo -n "${Purple}valgrind --leak-check=full ./so_long includes/-> ${Reset}"; valgrind --leak-check=full ./so_long includes/
+sleep 3;
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/t.b-> ${Reset}"; valgrind --leak-check=full ./so_long maps/t.b
+sleep 3;
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/.ber
+sleep 3;
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/t.be-> ${Reset}"; valgrind --leak-check=full ./so_long maps/t.be
+sleep 3;
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/t.berasdf-> ${Reset}"; valgrind --leak-check=full ./so_long maps/t.berasdf
+sleep 3;
 
+read -n1 -p "`tput setaf 46`Continue ?`tput sgr0` [y/N]" input
 echo "\n${Green}SO LONG ERROR MAP :${Reset}\n"; sleep 3;
 echo -n "${Purple}./so_long maps/error_dimension.ber-> ${Reset}"; ./so_long maps/error_dimension.ber
 echo -n "${Purple}./so_long maps/error_close_map_first_or_last.ber-> ${Reset}"; ./so_long maps/error_close_map_first_or_last.ber
 echo -n "${Purple}./so_long maps/error_close_map_middle_line.ber-> ${Reset}"; ./so_long maps/error_close_map_middle_line.ber
-
+echo -n "${Purple}./so_long maps/no_c.ber-> ${Reset}"; ./so_long maps/no_c.ber
+echo -n "${Purple}./so_long maps/no_e.ber-> ${Reset}"; ./so_long maps/no_e.ber
+echo -n "${Purple}./so_long maps/no_p.ber-> ${Reset}"; ./so_long maps/no_p.ber
+echo -n "${Purple}./so_long maps/2_p.ber-> ${Reset}"; ./so_long maps/2_p.ber
+sleep 10;
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/error_dimension.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/error_dimension.ber
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/error_close_map_first_or_last.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/error_close_map_first_or_last.ber
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/error_close_map_middle_line.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/error_close_map_middle_line.ber
+echo -n "${Purple}valgrind --leak-check=full ./so_long maps/no_c.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/no_c.ber
+echo -n "${Purple}valgrind --leak-check=full ./so_long maps/no_e.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/no_e.ber
+echo -n "${Purple}valgrind --leak-check=full ./so_long maps/no_p.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/no_p.ber
+echo -n "${Purple}valgrind --leak-check=full ./so_long maps/2_p.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/2_p.ber
 
+read -n1 -p "`tput setaf 46`Continue ?`tput sgr0` [y/N]" input
 echo "\n${Green}SO LONG TESTS :${Reset}\n"; sleep 3;
 echo -n "${Purple}./so_long maps/test.ber-> ${Reset}"; ./so_long maps/test.ber
 echo -n "${Purple}valgrind --leak-check=full ./so_long maps/test.ber-> ${Reset}"; valgrind --leak-check=full ./so_long maps/test.ber

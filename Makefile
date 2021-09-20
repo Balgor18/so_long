@@ -20,20 +20,17 @@ SRC =	init.c\
 		error.c \
 		main.c \
 		parse_map.c \
-		trash.c \
-		verif.c
-		#start_mlx.c \
+		start_mlx.c \
 		trash.c \
 		verif.c
 
 OBJ = ${SRC:.c=.o}
 
-all: lib_color libft $(NAME) #mlx libft $(NAME)
+all: lib_color libft $(NAME) mlx
 
 $(NAME) : $(OBJ)
 	@echo "\n$(YELLOW)Compiling $(NAME)...$(WHITE)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor
-#-Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 #	valgrind --leak-check=full --show-leak-kinds=all ./so_long
 

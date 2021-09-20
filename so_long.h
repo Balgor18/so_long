@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/17 20:02:39 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/20 17:11:35 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 
 # define STDERR 2
 # define STDOUT 1
+
+/*
+** Key
+*/
+# define ESCAPE 53
 
 /*
 ** ===============================================
@@ -141,6 +146,7 @@ void	free_map(t_map *map);
 ** ===================  Error  ===================
 ** ===============================================
 */
+void	error_close(int fd, char *s);
 int		error_miss_arg(void);
 int		error_msg(char *s);
 

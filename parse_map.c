@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/16 17:27:43 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:44:54 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,18 @@ void	parse_map(char *s, t_all *all)
 
 	fd = open(s, O_RDONLY);
 	if (fd < 0)
-	{
-		close(fd);
-		error_msg("Error open file\n");
-		exit (EXIT_FAILURE);
-	}
+		error_close(fd, "Error open file\n");
 	close(fd);
 	fd = open(s, O_DIRECTORY);
 	if (fd > 0)
-	{
-		close(fd);
-		error_msg("Error directory\n");
-		exit (EXIT_FAILURE);
-	}
+		error_close(fd, "Error directory\n");
 	close(fd);
-	split_map(s, all);
+	if (!split_map(s, all))
+		exit (EXIT_FAILURE);
 	if (!verif_map(&all->map))
 	{
 		free_map(&all->map);
-		close (EXIT_FAILURE);
+		exit (EXIT_FAILURE);
 	}
 	return ;
 }

@@ -6,12 +6,19 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 21:20:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/17 19:54:26 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:44:25 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "includes/lib_color/color.h"
+
+void	error_close(int fd, char *s)
+{
+	close(fd);
+	error_msg(s);
+	exit (EXIT_FAILURE);
+}
 
 int	error_char(int p, int e, int c)
 {
@@ -28,6 +35,9 @@ int	error_char(int p, int e, int c)
 
 int	error_miss_arg(void)
 {
+	red();
+	ft_putstr_fd("Error\n", 2);
+	reset();
 	ft_putstr_fd("usage : ./so_long [", STDERR);
 	cyan();
 	ft_putstr_fd("file", STDERR);
