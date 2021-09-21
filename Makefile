@@ -26,7 +26,7 @@ SRC =	init.c\
 
 OBJ = ${SRC:.c=.o}
 
-all: lib_color libft $(NAME) mlx
+all: lib_color mlx libft $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\n$(YELLOW)Compiling $(NAME)...$(WHITE)"
