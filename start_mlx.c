@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/20 19:29:02 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/21 14:36:36 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,27 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	// bonus use mlx_string_put
 	//char	*file = "platypus.xpm";
 
-	mlx->img.width = 1920;
-	mlx->img.height = 1080;
+	//mlx->img.width = 1920;
+	//mlx->img.height = 1080;
+
+	mlx->img.width = 3350;
+	mlx->img.height = 2240;
 	// Hypothese
 
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->img.width,
 			mlx->img.height, "so_long");
-	//mlx->img.img = mlx_xpm_file_to_image(mlx->mlx, "platypus.xpm", &mlx->img.width, &mlx->img.height);
+	mlx->img.img = mlx_xpm_file_to_image(mlx->mlx, "platypus.xpm", &mlx->img.width, &mlx->img.height);
 	//mlx->img.img = mlx_xpm_file_to_image(mlx->mlx, file, &mlx->img.width, &mlx->img.height);
 	//mlx_new_image()
-	mlx->img.img = mlx_new_image(mlx->mlx, mlx->img.width, mlx->img.height);
+	//mlx->img.img = mlx_new_image(mlx->mlx, mlx->img.width, mlx->img.height);
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img,
 			&mlx->img.bits_per_pixel, &mlx->img.line_length,
 			&mlx->img.endian);
 	mlx_key_hook(mlx->mlx_win, key_hook, all);
-	my_mlx_pixel_put(&mlx->img, 5, 5, 0x00FF0000);// print pixel
+	//my_mlx_pixel_put(&mlx->img, 5, 5, 0x00FF0000);// print pixel
 	//mlx_mouse_hook(mlx->mlx_win, mouse_hook, all);
-	//printf("%d, %d \n", mlx->img.width, mlx->img.height);
+	printf("%d, %d \n", mlx->img.width, mlx->img.height);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
 	//mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 100, 300);
 	mlx_loop(mlx->mlx);
