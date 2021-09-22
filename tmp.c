@@ -133,30 +133,30 @@ int    ft_base_position(char c, char *base)
 
 int    ft_atoi_base(char *str, char *base)
 {
-    int    i;
-    int    res;
-    int    sign;
+	int    i;
+	int    res;
+	int    sign;
 
-    i = 0;
-    res = 0;
-    sign = 1;
-    //if (ft_check_base(base) == 0)
-    //    return (0);
-    while (str[i] == '\t' || str[i] == '\f' || str[i] == '\v'
-        || str[i] == '\n' || str[i] == '\r' || str[i] == ' ')
-        i++;
-    while (str[i] == '+' || str[i] == '-')
-    {
-        if (str[i] == '-')
-            sign *= -1;
-    i++;
-    }
-    while (ft_base_position(str[i], base) >= 0)
-    {
-        res = (res * ft_strlen(base)) + (ft_base_position(str[i], base));
-        i++;
-    }
-    return (res * sign);
+	i = 0;
+	res = 0;
+	sign = 1;
+	//if (ft_check_base(base) == 0)
+	//    return (0);
+	while (str[i] == '\t' || str[i] == '\f' || str[i] == '\v'
+		|| str[i] == '\n' || str[i] == '\r' || str[i] == ' ')
+		i++;
+	while (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+	i++;
+	}
+	while (ft_base_position(str[i], base) >= 0)
+	{
+		res = (res * ft_strlen(base)) + (ft_base_position(str[i], base));
+		i++;
+	}
+	return (res * sign);
 }
 
 char    *ft_convert_base(char *nbr, char *base_from, char *base_to)
