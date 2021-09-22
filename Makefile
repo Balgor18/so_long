@@ -21,18 +21,29 @@ SRC =	init.c\
 		main.c \
 		parse_map.c \
 		start_mlx.c \
+		texture.c \
 		trash.c \
 		verif.c
 
 OBJ = ${SRC:.c=.o}
 
+OS = $(shell uname)
+
+
+ifeq ($(OS), Linux)
+	MINILIBX = -Lincludes/mlx_linux -lmlx -lXext -lX11
+	MLX = @make -C includes/mlx_linux
+else
+	MINILIBX = -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
+	MLX = @make -C includes/mlx
+endif
+
 all: lib_color mlx libft $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\n$(YELLOW)Compiling $(NAME)...$(WHITE)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor $(MINILIBX)
 	@echo "$(GREEN)-->[OK] $(WHITE)"
-#	valgrind --leak-check=full --show-leak-kinds=all ./so_long
 
 lib_color :
 	@echo "$(YELLOW)Compiling lib_color...$(WHITE)"
@@ -46,7 +57,7 @@ libft :
 
 mlx :
 	@echo "\n$(YELLOW)Compiling mlx...$(WHITE)"
-	@make -C includes/mlx
+	$(MLX)
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 
 %.o : %.c
