@@ -6,16 +6,34 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:52:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/17 20:02:31 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/22 10:20:30 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	init_img(t_img *i)
+{
+	i->addr = NULL;
+	i->img = NULL;
+}
+
+
+void	init_mlx(t_mlx *mlx)
+{
+	mlx->mlx_win = NULL;
+	mlx->mlx = NULL;
+	init_img(&mlx->exit);
+	init_img(&mlx->player);
+	init_img(&mlx->wall);
+	init_img(&mlx->collectible);
+}
+
 void	init_struct(t_all *all)
 {
 	(void)all;
 	//Do nothing
+	init_mlx(&all->mlx);
 }
 
 void	init_char_map(t_char_map *cm)

@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/20 17:11:35 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/22 16:37:31 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@
 # include "includes/mlx/mlx.h"
 # include "includes/libft/gnl/get_next_line.h"
 
+/*
+** Boolean
+*/
 # define TRUE 1
 # define FALSE 0
 
 # define SUCCES 1
 # define FAILURE 0
 
+/*
+** Output FD
+*/
 # define STDERR 2
 # define STDOUT 1
 
@@ -73,7 +79,11 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
-	t_img	img;
+	t_img	player;
+	t_img	ground;
+	t_img	wall;
+	t_img	exit;
+	t_img	collectible;
 //	void	*mlx_img;
 }				t_mlx;
 
@@ -108,8 +118,17 @@ void	init_char_map(t_char_map *cm);
 ** ====================  Mlx  ====================
 ** ===============================================
 */
-//void	start_mlx(t_all *all);
+
 void	start_mlx(t_mlx *mlx, t_all *all);
+
+/*
+** ===============================================
+** ==================  Texture  ==================
+** ===============================================
+*/
+
+void	image_in_struct(t_img *i, char *file, void *mlx);
+
 /*
 ** ===============================================
 ** ===================  Error  ===================
