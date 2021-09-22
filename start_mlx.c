@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/21 17:33:26 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/22 08:38:17 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 
 	//mlx->img.img = mlx_png_file_to_image(mlx->mlx, "texture/player.png", &mlx->img.width, &mlx->img.height);
 
-	mlx->img.width = 4;
-	mlx->img.height = 4;
+	mlx->img.width = 50;
+	mlx->img.height = 50;
 	mlx->img.img = mlx_xpm_file_to_image(mlx->mlx, file, &mlx->img.width, &mlx->img.height);
 
 	//mlx->img.img = mlx_xpm_to_image(mlx->mlx, &file, &mlx->img.width, &mlx->img.height);
@@ -80,11 +80,12 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	/*mlx->img.addr = mlx_get_data_addr(mlx->img.img,
 			&mlx->img.bits_per_pixel, &mlx->img.line_length,
 			&mlx->img.endian);*/
+
 	mlx_key_hook(mlx->mlx_win, key_hook, all);
 	//my_mlx_pixel_put(&mlx->img, 5, 5, 0x00FF0000);// print pixel
 	//mlx_mouse_hook(mlx->mlx_win, mouse_hook, all);
 	printf("%d, %d \n", mlx->img.width, mlx->img.height);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 1080, 720);
 	//mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img.img, 100, 300);
 	mlx_loop(mlx->mlx);
 }
