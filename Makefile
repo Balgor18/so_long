@@ -2,7 +2,7 @@ NAME = so_long
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 RM = rm -rf
 
@@ -21,7 +21,7 @@ SRC =	init.c\
 		main.c \
 		parse_map.c \
 		start_mlx.c \
-		texture.c \
+		image.c \
 		trash.c \
 		verif.c
 
@@ -32,21 +32,24 @@ OS = $(shell uname)
 ifeq ($(OS), Linux)
 	MINILIBX = -Lincludes/mlx_linux -lmlx -lXext -lX11
 	MLX = @make -C includes/mlx_linux
+	INCLUDE_ADD = -D LINUX
 	WIDTH = 0
 	HEIGHT = 0
+	SRC += texture_mlx.c
 else
 	MINILIBX = -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
 	MLX = @make -C includes/mlx
+	INCLUDE_ADD = -D MAC_OS
 	WIDTH = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$2}')
 	HEIGHT = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$4}')
+	SRC += texture.c
 endif
 
 all: lib_color mlx libft $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\n$(YELLOW)Compiling $(NAME)...$(WHITE)"
-	@echo "$(WIDTH)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor $(MINILIBX) -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor $(MINILIBX)
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 
 lib_color :
@@ -66,7 +69,7 @@ mlx :
 
 %.o : %.c
 	@echo "$(PURPLE)Compiling: $< $(WHITE)"
-	$(CC) $(CFLAGS) -o $@ -c $?
+	$(CC) $(CFLAGS) -o $@ -c $? -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT) $(INCLUDE_ADD)
 	@echo "$(GREEN)[OK] $(WHITE)"
 
 norme :

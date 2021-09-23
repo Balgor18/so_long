@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/22 16:37:31 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/23 19:44:37 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,14 @@
 
 # include <fcntl.h>
 # include "includes/libft/libft.h"
-# include "includes/mlx/mlx.h"
 # include "includes/libft/gnl/get_next_line.h"
+
+# if LINUX
+	# include "includes/mlx_linux/mlx.h"
+# endif
+# if MAC_OS
+	# include "includes/mlx/mlx.h"
+# endif
 
 /*
 ** Boolean
@@ -26,6 +32,16 @@
 
 # define SUCCES 1
 # define FAILURE 0
+
+/*
+** Height || Width
+*/
+# ifndef HEIGHT
+#  define HEIGHT 0
+# endif
+# ifndef WIDTH
+#  define WIDTH 0
+# endif
 
 /*
 ** Output FD
@@ -79,12 +95,13 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*mlx_win;
+	int		width;
+	int		height;
 	t_img	player;
 	t_img	ground;
 	t_img	wall;
 	t_img	exit;
 	t_img	collectible;
-//	void	*mlx_img;
 }				t_mlx;
 
 /*
@@ -151,6 +168,7 @@ void	parse_map(char *s, t_all *all);
 ** ===============================================
 */
 int		verif_file_name(char *s);
+void	verif_width_and_height(t_mlx *mlx);
 
 /*
 ** ===============================================
