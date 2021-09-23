@@ -29,20 +29,24 @@ OBJ = ${SRC:.c=.o}
 
 OS = $(shell uname)
 
-
 ifeq ($(OS), Linux)
 	MINILIBX = -Lincludes/mlx_linux -lmlx -lXext -lX11
 	MLX = @make -C includes/mlx_linux
+	WIDTH = 0
+	HEIGHT = 0
 else
 	MINILIBX = -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
 	MLX = @make -C includes/mlx
+	WIDTH = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$2}')
+	HEIGHT = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$4}')
 endif
 
 all: lib_color mlx libft $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "\n$(YELLOW)Compiling $(NAME)...$(WHITE)"
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor $(MINILIBX)
+	@echo "$(WIDTH)"
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -Lincludes/libft -lft -Lincludes/lib_color -lcolor $(MINILIBX) -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT)
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 
 lib_color :
