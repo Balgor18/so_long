@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/22 16:33:32 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/23 19:43:58 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ int	mouse_hook(int mouse, t_all *all)
 void	start_mlx(t_mlx *mlx, t_all *all)
 {
 	// bonus use mlx_string_put
+
 	mlx->mlx = mlx_init();
+	verif_width_and_height(mlx);
+	printf("width %d\nheight %d\n",mlx->width, mlx->height);
+	exit(127);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, 1920, 1080, "so_long");
 	image_in_struct(&mlx->player, "texture/player.xpm", mlx->mlx);
 	image_in_struct(&mlx->ground, "texture/ground.xpm", mlx->mlx);
@@ -62,10 +66,14 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	mlx_key_hook(mlx->mlx_win, key_hook, all);
 
 	//mlx_mouse_hook(mlx->mlx_win, mouse_hook, all);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->ground.img, 0, 0);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->player.img, 0, 0);
 
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->player.img, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->ground.img, 0, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->wall.img, 100, 300);
 	//put_texture_in_map();
 	mlx_loop(mlx->mlx);
+	// in case of refresh map
+	// mlx_clear_window
+	// putimage
+	// and mlx_loop
 }
