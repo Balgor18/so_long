@@ -76,7 +76,7 @@ norme :
 	@make -C includes/libft/ norme
 	@make -C includes/lib_color/ norme
 	@norminette -R CheckForbiddenSourceHeader ${SRC}
-	@norminette -R CheckDefine fdf.h
+	@norminette -R CheckDefine so_long.h
 
 clean :
 	@echo "$(RED)Clean file...$(WHITE)"

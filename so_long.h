@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/24 11:30:10 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/24 16:40:27 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # endif
 # if MAC_OS
 	# define ESCAPE 53
+	# define A 0
+	# define D 2
+	# define W 13
+	# define S 1
+	# define Z 6
+	# define Q 12
 	# include "includes/mlx/mlx.h"
 # endif
 

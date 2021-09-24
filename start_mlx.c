@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/24 11:29:00 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/24 19:08:29 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,33 @@ int	mouse_hook(int mouse, t_all *all)
 	return (0);
 }*/
 
+void	print_image_size(t_img *i, char *s)
+{
+	printf("----------\n%s\nwidth = %d\nheight=%d\n----------\n", s, i->width, i->height);
+}
+
+void	modify_picture_size(t_img *i, int width, int height)
+{
+	i->width = width;
+	i->height = height;
+}
+
+void	calcul_picture_size(t_all *all)
+{
+	int	len;
+	int	width_picture;
+	int height_picture;
+
+	len = ft_strlen(all->map.map[0]);
+	width_picture = WIDTH / len;
+	height_picture = HEIGHT / all->map.len;
+	modify_picture_size(&all->mlx.player, width_picture, height_picture);
+	modify_picture_size(&all->mlx.ground, width_picture, height_picture);
+	modify_picture_size(&all->mlx.wall, width_picture, height_picture);
+	modify_picture_size(&all->mlx.exit, width_picture, height_picture);
+	modify_picture_size(&all->mlx.collectible, width_picture, height_picture);
+}
+
 void	start_mlx(t_mlx *mlx, t_all *all)
 {
 	// bonus use mlx_string_put
@@ -63,9 +90,17 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	image_in_struct(&mlx->collectible, "texture/collectible.xpm", mlx->mlx);
 
 	mlx_key_hook(mlx->mlx_win, key_hook, all);
+	calcul_picture_size(all);
+	//mlx->player.height = 64;
+	print_image_size(&mlx->player, "Player");
+	print_image_size(&mlx->ground, "Ground");
 
+	print_image_size(&mlx->wall, "Wall");
+	print_image_size(&mlx->exit, "Exit");
+	print_image_size(&mlx->collectible, "Collectible");
+	//exit(124);
 	//mlx_mouse_hook(mlx->mlx_win, mouse_hook, all);
-
+	//exit(125);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->ground.img, 0, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->player.img, 0, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->wall.img, 100, 300);
