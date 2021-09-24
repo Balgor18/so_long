@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/23 19:43:58 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/24 11:29:00 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
-
+#include <stdio.h>
 int	key_hook(int key, t_all *all)
 {
+	printf("key = %d\n", key);
 	if (key == ESCAPE)
 	{
 		mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
@@ -54,9 +55,7 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 
 	mlx->mlx = mlx_init();
 	verif_width_and_height(mlx);
-	printf("width %d\nheight %d\n",mlx->width, mlx->height);
-	exit(127);
-	mlx->mlx_win = mlx_new_window(mlx->mlx, 1920, 1080, "so_long");
+	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
 	image_in_struct(&mlx->player, "texture/player.xpm", mlx->mlx);
 	image_in_struct(&mlx->ground, "texture/ground.xpm", mlx->mlx);
 	image_in_struct(&mlx->wall, "texture/wall.xpm", mlx->mlx);
@@ -67,8 +66,8 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 
 	//mlx_mouse_hook(mlx->mlx_win, mouse_hook, all);
 
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->player.img, 0, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->ground.img, 0, 0);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->player.img, 0, 0);
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->wall.img, 100, 300);
 	//put_texture_in_map();
 	mlx_loop(mlx->mlx);

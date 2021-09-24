@@ -7,14 +7,14 @@ CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
 # Colors
-GREY = $'\x1b[30m
-RED = $'\x1b[31m
-GREEN = $'\x1b[32m
-YELLOW = $'\x1b[33m
-BLUE = $'\x1b[34m
-PURPLE = $'\x1b[35m
-CYAN = $'\x1b[36m
-WHITE = $'\x1b[37m
+GREY = $(shell tput setaf 59)
+RED = $(shell tput setaf 196)
+GREEN = $(shell tput setaf 82)
+YELLOW = $(shell tput setaf 226)
+BLUE = $(shell tput setaf 39)
+PURPLE = $(shell tput setaf 164)
+CYAN = $(shell tput setaf 37)
+WHITE = $(shell tput sgr0)
 
 SRC =	init.c\
 		error.c \

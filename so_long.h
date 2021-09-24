@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/23 19:44:37 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/24 11:30:10 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include "includes/libft/gnl/get_next_line.h"
 
 # if LINUX
+	# define ESCAPE 65307
 	# include "includes/mlx_linux/mlx.h"
 # endif
 # if MAC_OS
+	# define ESCAPE 53
 	# include "includes/mlx/mlx.h"
 # endif
 
@@ -52,7 +54,7 @@
 /*
 ** Key
 */
-# define ESCAPE 53
+//# define ESCAPE 53
 
 /*
 ** ===============================================
