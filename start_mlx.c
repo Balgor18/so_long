@@ -6,11 +6,11 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/24 19:08:29 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:23:05 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/header/so_long.h"
 
 /*typedef struct	s_data {
 	void	*img;
@@ -82,7 +82,8 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 
 	mlx->mlx = mlx_init();
 	verif_width_and_height(mlx);
-	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
+	mlx->mlx_win = mlx_new_window(mlx->mlx, 100, 100, "so_long");
+	//mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
 	image_in_struct(&mlx->player, "texture/player.xpm", mlx->mlx);
 	image_in_struct(&mlx->ground, "texture/ground.xpm", mlx->mlx);
 	image_in_struct(&mlx->wall, "texture/wall.xpm", mlx->mlx);

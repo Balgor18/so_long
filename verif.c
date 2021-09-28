@@ -6,11 +6,11 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/23 17:38:11 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:23:30 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/header/so_long.h"
 
 int	verif_file_name(char *s)
 {

@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/24 16:40:27 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/28 14:07:29 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,17 @@
 # define SO_LONG_H
 
 # include <fcntl.h>
-# include "includes/libft/libft.h"
-# include "includes/libft/gnl/get_next_line.h"
+# include "../libft/libft.h"
+# include "../libft/gnl/get_next_line.h"
 
 # if LINUX
 	# define ESCAPE 65307
-	# include "includes/mlx_linux/mlx.h"
+	//# include "key_keyboard_linux.h"
+	# include "../mlx_linux/mlx.h"
 # endif
 # if MAC_OS
-	# define ESCAPE 53
-	# define A 0
-	# define D 2
-	# define W 13
-	# define S 1
-	# define Z 6
-	# define Q 12
-	# include "includes/mlx/mlx.h"
+	# include "key_keyboard.h"
+	# include "../mlx/mlx.h"
 # endif
 
 /*
@@ -56,11 +51,6 @@
 */
 # define STDERR 2
 # define STDOUT 1
-
-/*
-** Key
-*/
-//# define ESCAPE 53
 
 /*
 ** ===============================================
@@ -162,6 +152,7 @@ void	image_in_struct(t_img *i, char *file, void *mlx);
 int		error_miss_arg(void);
 int		error_msg(char *s);
 int		error_char(int p, int e, int c);
+void	error_close(int fd, char *s);
 
 /*
 ** ===============================================
@@ -177,6 +168,7 @@ void	parse_map(char *s, t_all *all);
 */
 int		verif_file_name(char *s);
 void	verif_width_and_height(t_mlx *mlx);
+int		verif_map(t_map *map);
 
 /*
 ** ===============================================
@@ -185,22 +177,5 @@ void	verif_width_and_height(t_mlx *mlx);
 */
 void	ft_trash(t_all *all);
 void	free_map(t_map *map);
-
-/*
-** ===============================================
-** ===================  Error  ===================
-** ===============================================
-*/
-void	error_close(int fd, char *s);
-int		error_miss_arg(void);
-int		error_msg(char *s);
-
-/*
-** ===============================================
-** ===================  Verif  ===================
-** ===============================================
-*/
-int		verif_file_name(char *s);
-int		verif_map(t_map *map);
 
 #endif

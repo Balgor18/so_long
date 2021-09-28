@@ -6,11 +6,11 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:49:32 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/24 14:53:29 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/28 14:10:52 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/header/so_long.h"
 
 void	verif_width_and_height(t_mlx *mlx)
 {

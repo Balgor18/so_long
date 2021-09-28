@@ -6,11 +6,11 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:52:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/23 19:44:04 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/28 12:23:30 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/header/so_long.h"
 
 void	init_img(t_img *i)
 {

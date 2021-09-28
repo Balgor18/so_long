@@ -75,12 +75,12 @@ mlx :
 norme :
 	@make -C includes/libft/ norme
 	@make -C includes/lib_color/ norme
-	@norminette -R CheckForbiddenSourceHeader ${SRC}
-	@norminette -R CheckDefine so_long.h
+	@norminette ${SRC} texture_mlx.c texture.c
+	@norminette so_long.h
 
 clean :
 	@echo "$(RED)Clean file...$(WHITE)"
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJ) texture_mlx.o texture.o
 	@make -s -C includes/libft/ clean
 	@make -s -C includes/lib_color/ clean
 	@make -s -C includes/mlx/ clean
