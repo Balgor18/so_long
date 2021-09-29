@@ -30,7 +30,7 @@ OBJ = ${SRC:.c=.o}
 OS = $(shell uname)
 
 ifeq ($(OS), Linux)
-	MINILIBX = -Lincludes/mlx_linux -lmlx -lXext -lX11
+	MINILIBX = -Lincludes/mlx_linux -lmlx_Linux -lXext -lX11
 	MLX = @make -C includes/mlx_linux
 	INCLUDE_ADD = -D LINUX
 	WIDTH = 0

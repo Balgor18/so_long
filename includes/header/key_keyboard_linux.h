@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:09:25 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/28 13:57:56 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/29 17:46:18 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,35 +57,35 @@
 # define BACK_SLASH 92
 
 //4 Line
-# define CAPS_LOCK
-# define A
-# define S
-# define D
-# define F
-# define G
-# define H
-# define J
-# define K
-# define L
+# define CAPS_LOCK 65509
+# define A 97
+# define S 115
+# define D 100
+# define F 102
+# define G 103
+# define H 104
+# define J 106
+# define K 107
+# define L 108
 # define ENTER 65293
 
 //5 Line
-# define SHIFT
-# define Z
-# define X
-# define C
-# define V
-# define B
-# define N
-# define M
+# define SHIFT 65505
+# define Z 122
+# define X 120
+# define C 99
+# define V 118
+# define B 98
+# define N 110
+# define M 109
 
 //6 Line
-# define CONTROL_LEFT
-# define OPTION_LEFT
-# define COMMAND_LEFT
-# define SPACE
-# define COMMAND_RIGHT
-# define OPTION_RIGHT
-# define CONTROL_RIGHT
+# define CONTROL_LEFT 65507
+# define OPTION_LEFT 65513
+//# define COMMAND_LEFT
+# define SPACE 32
+# define COMMAND_RIGHT 65516
+# define OPTION_RIGHT 65514
+# define CONTROL_RIGHT 65508
 
 # endif

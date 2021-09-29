@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/28 14:07:29 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:22:01 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 # include "../libft/gnl/get_next_line.h"
 
 # if LINUX
-	# define ESCAPE 65307
-	//# include "key_keyboard_linux.h"
+	# include "key_keyboard_linux.h"
 	# include "../mlx_linux/mlx.h"
 # endif
 # if MAC_OS
@@ -167,7 +166,7 @@ void	parse_map(char *s, t_all *all);
 ** ===============================================
 */
 int		verif_file_name(char *s);
-void	verif_width_and_height(t_mlx *mlx);
+void	verif_width_and_height(t_all *all, t_mlx *mlx);
 int		verif_map(t_map *map);
 
 /*

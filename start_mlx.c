@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/28 12:23:05 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/29 19:20:54 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ void	modify_picture_size(t_img *i, int width, int height)
 
 void	calcul_picture_size(t_all *all)
 {
-	int	len;
+	//int	len;
 	int	width_picture;
 	int height_picture;
 
-	len = ft_strlen(all->map.map[0]);
-	width_picture = WIDTH / len;
-	height_picture = HEIGHT / all->map.len;
+	//len = ft_strlen(all->map.map[0]);
+	//width_picture = WIDTH / len;
+	//height_picture = HEIGHT / all->map.len;
+	width_picture = 20;
+	height_picture = 20;
 	modify_picture_size(&all->mlx.player, width_picture, height_picture);
 	modify_picture_size(&all->mlx.ground, width_picture, height_picture);
 	modify_picture_size(&all->mlx.wall, width_picture, height_picture);
@@ -81,16 +83,18 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	// bonus use mlx_string_put
 
 	mlx->mlx = mlx_init();
-	verif_width_and_height(mlx);
-	mlx->mlx_win = mlx_new_window(mlx->mlx, 100, 100, "so_long");
-	//mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
 	image_in_struct(&mlx->player, "texture/player.xpm", mlx->mlx);
 	image_in_struct(&mlx->ground, "texture/ground.xpm", mlx->mlx);
 	image_in_struct(&mlx->wall, "texture/wall.xpm", mlx->mlx);
 	image_in_struct(&mlx->exit, "texture/exit.xpm", mlx->mlx);
 	image_in_struct(&mlx->collectible, "texture/collectible.xpm", mlx->mlx);
 
+	verif_width_and_height(all, mlx);
+	//exit(123);
+	//mlx->mlx_win = mlx_new_window(mlx->mlx, 100, 100, "so_long");
+	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
 	mlx_key_hook(mlx->mlx_win, key_hook, all);
+
 	calcul_picture_size(all);
 	//mlx->player.height = 64;
 	print_image_size(&mlx->player, "Player");
