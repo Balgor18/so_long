@@ -6,25 +6,23 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 12:34:04 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:50:16 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <fcntl.h>
-# include "../libft/libft.h"
-# include "../libft/gnl/get_next_line.h"
-
 # if LINUX
 	# include "key_keyboard_linux.h"
 	# include "../mlx_linux/mlx.h"
-# endif
-# if MAC_OS
+# elif MAC_OS
 	# include "key_keyboard.h"
 	# include "../mlx/mlx.h"
 # endif
+# include <fcntl.h>
+# include "../libft/libft.h"
+# include "../libft/gnl/get_next_line.h"
 
 /*
 ** Boolean
@@ -107,6 +105,7 @@ typedef struct s_mlx
 typedef struct s_map
 {
 	char	**map;
+	int		goal;
 	size_t	len;
 }				t_map;
 

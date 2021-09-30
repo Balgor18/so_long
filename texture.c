@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:49:32 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 11:48:07 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:11:58 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	verif_width_and_height(t_all *all, t_mlx *mlx)
 
 	maxwidth = WIDTH / mlx->wall.width;
 	maxheight = HEIGHT / mlx->wall.height;
-	width =ft_strlen(all->map.map[0]);
+	width = ft_strlen(all->map.map[0]);
 	height = all->map.len;
 	if (width < maxwidth)
 		mlx->width = width * mlx->wall.width;

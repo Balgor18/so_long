@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/28 12:23:30 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 16:50:33 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ int	verif_map(t_map *map)
 	}
 	if (cm.count_c == 0 || cm.count_e == 0 || cm.count_p == 0 || cm.count_p > 1)
 		return (error_char(cm.count_p, cm.count_e, cm.count_c));
+	map->goal = cm.count_c;
 	return (TRUE);
 }

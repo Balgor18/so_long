@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:52:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/28 12:23:30 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 14:55:39 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	init_img(t_img *i)
 	i->addr = NULL;
 	i->img = NULL;
 }
-
 
 void	init_mlx(t_mlx *mlx)
 {
@@ -31,8 +30,7 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_struct(t_all *all)
 {
-	(void)all;
-	//Do nothing
+	ft_bzero(all, 1);
 	init_mlx(&all->mlx);
 }
 
