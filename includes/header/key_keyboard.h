@@ -6,12 +6,12 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:09:25 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/28 13:35:56 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 18:34:48 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef KEY_KEYBOARD_H
-#  define KEY_KEYBOARD_H
+#ifndef KEY_KEYBOARD_H
+# define KEY_KEYBOARD_H
 
 // Arrow
 # define UP 126
@@ -85,4 +85,4 @@
 # define OPTION_RIGHT 262
 # define CONTROL_RIGHT 269
 
-# endif
+#endif

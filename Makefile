@@ -19,6 +19,7 @@ WHITE = $(shell tput sgr0)
 SRC =	init.c\
 		error.c \
 		main.c \
+		move.c \
 		parse_map.c \
 		start_mlx.c \
 		image.c \

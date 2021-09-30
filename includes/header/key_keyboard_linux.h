@@ -6,14 +6,12 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 12:09:25 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/29 17:46:18 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 18:34:37 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef KEY_KEYBOARD_LINUX_H
-#  define KEY_KEYBOARD_LINUX_H
-
-
+#ifndef KEY_KEYBOARD_LINUX_H
+# define KEY_KEYBOARD_LINUX_H
 
 // Arrow
 # define UP 65362
@@ -82,10 +80,9 @@
 //6 Line
 # define CONTROL_LEFT 65507
 # define OPTION_LEFT 65513
-//# define COMMAND_LEFT
 # define SPACE 32
 # define COMMAND_RIGHT 65516
 # define OPTION_RIGHT 65514
 # define CONTROL_RIGHT 65508
 
-# endif
+#endif

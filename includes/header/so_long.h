@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 16:50:16 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 18:35:28 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,23 @@ typedef struct s_mlx
 }				t_mlx;
 
 /*
+** player
+*/
+typedef struct s_player
+{
+	int	x;
+	int	y;
+}				t_player;
+
+/*
 ** map
 */
 typedef struct s_map
 {
-	char	**map;
-	int		goal;
-	size_t	len;
+	char		**map;
+	int			goal;
+	size_t		len;
+	t_player	player;
 }				t_map;
 
 /*
@@ -114,8 +124,8 @@ typedef struct s_map
 */
 typedef struct s_all
 {
-	t_map	map;
-	t_mlx	mlx;
+	t_map		map;
+	t_mlx		mlx;
 }				t_all;
 
 /*
@@ -134,6 +144,7 @@ void	init_char_map(t_char_map *cm);
 
 void	start_mlx(t_mlx *mlx, t_all *all);
 void	put_texture_in_map(t_all *all);
+void	press_move(t_map *map, char move);
 
 /*
 ** ===============================================

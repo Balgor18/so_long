@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 16:50:04 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 18:37:22 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,22 @@ int	key_hook(int key, t_all *all)
 		ft_trash(all);
 		exit(0);
 	}
-	/*if (key == ESCAPE)
+	else if (key == D || key == RIGHT)
 	{
-		mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
-		ft_trash(all);
-		exit(0);
-	}*/
+		press_move(all, 'R');
+	}
+	else if (key == A || key == Q || key == LEFT)
+	{
+		press_move(all, 'L');
+	}
+	else if (key == S || key == DOWN)
+	{
+		press_move(all, 'D');
+	}
+	else if (key == W || key == Z || key == UP)
+	{
+		press_move(all, 'U');
+	}
 	return (0);
 }
 

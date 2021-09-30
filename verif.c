@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 16:50:33 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 18:23:47 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,26 @@ int	verif_line(char *s, char c)
 	return (TRUE);
 }
 
-int	verif_char_map(char *s, t_char_map *sc)
+int	verif_char_map(t_map *map, char *s, t_char_map *sc, int y)
 {
-	while (*s)
+	int	i;
+
+	i = -1;
+	while (s[++i])
 	{
-		if (*s == 'C')
+		if (s[i] == 'C')
 			sc->count_c++;
-		if (*s == 'P')
+		if (s[i] == 'P')
+		{
+			map->player.x = i;
+			map->player.y = y;
 			sc->count_p++;
-		if (*s == 'E')
+		}
+		if (s[i] == 'E')
 			sc->count_e++;
-		if (*s != 'C' && *s != '1' && *s != '0' && *s != 'E' && *s != 'P')
+		if (s[i] != 'C' && s[i] != '1' && s[i] != '0'
+			&& s[i] != 'E' && s[i] != 'P')
 			return (error_msg("Bad characther in map\n"));
-		s++;
 	}
 	return (TRUE);
 }
@@ -69,7 +76,7 @@ int	verif_map(t_map *map)
 	len = ft_strlen(map->map[map_len]);
 	while (map_len < map->len)
 	{
-		if (!verif_char_map(map->map[map_len], &cm))
+		if (!verif_char_map(map, map->map[map_len], &cm, map_len))
 			return (FALSE);
 		if (ft_strlen(map->map[map_len]) != len)
 			return (error_msg("not a good size map\n"));
