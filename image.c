@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 12:37:09 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 13:15:35 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	put_texture_in_map(t_all *all)
 	j = 0;
 	while (all->map.len > line)
 	{
+		j = 0;
 		while (j < ft_strlen(all->map.map[line]))
 		{
 			if (all->map.map[line][j] == '0')
@@ -42,7 +43,10 @@ void	put_texture_in_map(t_all *all)
 			else if (all->map.map[line][j] == '1')
 				image_in_window(&all->mlx, &all->mlx.wall, line * 64, j * 64);
 			else if (all->map.map[line][j] == 'E')
+			{
+				image_in_window(&all->mlx, &all->mlx.ground, line * 64, j * 64);
 				image_in_window(&all->mlx, &all->mlx.exit, line * 64, j * 64);
+			}
 			else if (all->map.map[line][j] == 'C')
 			{
 				image_in_window(&all->mlx, &all->mlx.ground, line * 64, j * 64);
@@ -51,7 +55,7 @@ void	put_texture_in_map(t_all *all)
 			else if (all->map.map[line][j] == 'P')
 			{
 				image_in_window(&all->mlx, &all->mlx.ground, line * 64, j * 64);
-				image_in_window(&all->mlx, &all->mlx.player, line * 64, j * 64);
+				image_in_window(&all->mlx, &all->mlx.player, (line - 1)* 64, j * 64);
 			}
 			j++;
 		}
