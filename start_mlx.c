@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/29 19:20:54 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/09/30 12:34:19 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,9 @@ void	modify_picture_size(t_img *i, int width, int height)
 
 void	calcul_picture_size(t_all *all)
 {
-	//int	len;
 	int	width_picture;
 	int height_picture;
 
-	//len = ft_strlen(all->map.map[0]);
-	//width_picture = WIDTH / len;
-	//height_picture = HEIGHT / all->map.len;
 	width_picture = 20;
 	height_picture = 20;
 	modify_picture_size(&all->mlx.player, width_picture, height_picture);
@@ -90,26 +86,26 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	image_in_struct(&mlx->collectible, "texture/collectible.xpm", mlx->mlx);
 
 	verif_width_and_height(all, mlx);
-	//exit(123);
 	//mlx->mlx_win = mlx_new_window(mlx->mlx, 100, 100, "so_long");
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
 	mlx_key_hook(mlx->mlx_win, key_hook, all);
 
-	calcul_picture_size(all);
-	//mlx->player.height = 64;
+	if (mlx->width == WIDTH || mlx->height == HEIGHT)
+		calcul_picture_size(all);
+
 	print_image_size(&mlx->player, "Player");
 	print_image_size(&mlx->ground, "Ground");
-
 	print_image_size(&mlx->wall, "Wall");
 	print_image_size(&mlx->exit, "Exit");
 	print_image_size(&mlx->collectible, "Collectible");
+	//image_to_window();
 	//exit(124);
 	//mlx_mouse_hook(mlx->mlx_win, mouse_hook, all);
 	//exit(125);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->ground.img, 0, 0);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->player.img, 0, 0);
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->wall.img, 100, 300);
-	//put_texture_in_map();
+	//mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->ground.img, 0, 0);
+	//mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->player.img, 0, 0);
+	//mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->wall.img, 100, 300);
+	put_texture_in_map(all);
 	mlx_loop(mlx->mlx);
 	// in case of refresh map
 	// mlx_clear_window
