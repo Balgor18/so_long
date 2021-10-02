@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:49:32 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/29 18:21:43 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/01 15:37:24 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 
 void	verif_width_and_height(t_all *all, t_mlx *mlx)
 {
-	(void)all;
+	int		width;
+	int		maxwidth;
+	int		height;
+	int		maxheight;
+
 	mlx_get_screen_size(mlx->mlx, &mlx->width, &mlx->height);
+	maxwidth = mlx->width / mlx->wall.width;
+	maxheight = mlx->height / mlx->wall.height;
+	width = ft_strlen(all->map.map[0]);
+	height = all->map.len;
+	if (width < maxwidth)
+		mlx->width = width * mlx->wall.width;
+	if (height < maxheight)
+		mlx->height = height * mlx->wall.height;
 }

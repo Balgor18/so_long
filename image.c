@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 16:44:35 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/01 13:20:34 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,24 @@ void	put_texture_in_map(t_all *all)
 		}
 		line++;
 	}
+}
+
+void	modify_picture_size(t_img *i, int width, int height)
+{
+	i->width = width;
+	i->height = height;
+}
+
+void	calcul_picture_size(t_all *all)
+{
+	int	width_picture;
+	int	height_picture;
+
+	width_picture = 20;
+	height_picture = 20;
+	modify_picture_size(&all->mlx.player, width_picture, height_picture);
+	modify_picture_size(&all->mlx.ground, width_picture, height_picture);
+	modify_picture_size(&all->mlx.wall, width_picture, height_picture);
+	modify_picture_size(&all->mlx.exit, width_picture, height_picture);
+	modify_picture_size(&all->mlx.collectible, width_picture, height_picture);
 }

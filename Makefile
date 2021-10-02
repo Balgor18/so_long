@@ -21,6 +21,7 @@ SRC =	init.c\
 		main.c \
 		move.c \
 		parse_map.c \
+		print.c \
 		start_mlx.c \
 		image.c \
 		trash.c \
@@ -77,7 +78,7 @@ norme :
 	@make -C includes/libft/ norme
 	@make -C includes/lib_color/ norme
 	@norminette ${SRC} texture_mlx.c texture.c
-	@norminette so_long.h
+	@norminette includes/header/*.h
 
 clean :
 	@echo "$(RED)Clean file...$(WHITE)"

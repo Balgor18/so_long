@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 18:35:28 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/01 15:39:14 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 # define SO_LONG_H
 
 # if LINUX
-	# include "key_keyboard_linux.h"
-	# include "../mlx_linux/mlx.h"
+#  include "key_keyboard_linux.h"
+#  include "../mlx_linux/mlx.h"
 # elif MAC_OS
-	# include "key_keyboard.h"
-	# include "../mlx/mlx.h"
+#  include "key_keyboard.h"
+#  include "../mlx/mlx.h"
 # endif
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../libft/gnl/get_next_line.h"
-
+#  include "../mlx/mlx.h"
 /*
 ** Boolean
 */
@@ -115,6 +115,7 @@ typedef struct s_map
 {
 	char		**map;
 	int			goal;
+	int			collect;
 	size_t		len;
 	t_player	player;
 }				t_map;
@@ -144,15 +145,16 @@ void	init_char_map(t_char_map *cm);
 
 void	start_mlx(t_mlx *mlx, t_all *all);
 void	put_texture_in_map(t_all *all);
-void	press_move(t_map *map, char move);
+void	press_move(t_all *all, t_map *map, char move);
 
 /*
 ** ===============================================
 ** ==================  Texture  ==================
 ** ===============================================
 */
-
 void	image_in_struct(t_img *i, char *file, void *mlx);
+void	calcul_picture_size(t_all *all);
+void	reset_image_put_to_window(t_all *all);
 
 /*
 ** ===============================================
@@ -188,4 +190,10 @@ int		verif_map(t_map *map);
 void	ft_trash(t_all *all);
 void	free_map(t_map *map);
 
+/*
+** ===============================================
+** ===================  Print  ===================
+** ===============================================
+*/
+void	print_move(int nb);
 #endif

@@ -6,47 +6,139 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:01:34 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 18:37:17 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/01 16:07:43 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/header/so_long.h"
 
-void	move_up(t_map *map)
+void	move_up(t_all *all, t_map *map, int *move)
 {
-	(void)map;
+	if (map->map[map->player.y - 1][map->player.x] == '1')
+		return ;
+	*move += 1;
+	if (map->map[map->player.y - 1][map->player.x] == 'C')
+	{
+		map->collect++;
+		map->map[map->player.y][map->player.x] = '0';
+	}
+	if (map->map[map->player.y - 1][map->player.x] == 'E')
+	{
+		if (map->goal == map->collect)
+		{
+			ft_trash(all);
+			system("leaks so_long");
+			exit(0);
+		}
+	}
+	if (map->map[map->player.y - 1][map->player.x] != 'E')
+	{
+		map->map[map->player.y][map->player.x] = '0';
+		map->player.y = map->player.y - 1;
+		map->map[map->player.y][map->player.x] = 'P';
+	}
+	print_move(*move);
+	return ;
 }
 
-void	move_down(t_map *map)
+void	move_down(t_all *all, t_map *map, int *move)
 {
-	(void)map;
+	if (map->map[map->player.y + 1][map->player.x] == '1')
+		return ;
+	*move += 1;
+	if (map->map[map->player.y + 1][map->player.x] == 'C')
+	{
+		map->collect++;
+		map->map[map->player.y][map->player.x] = '0';
+	}
+	if (map->map[map->player.y + 1][map->player.x] == 'E')
+	{
+		if (map->goal == map->collect)
+		{
+			ft_trash(all);
+			system("leaks so_long");
+			exit(0);
+		}
+	}
+	if (map->map[map->player.y + 1][map->player.x] != 'E')
+	{
+		map->map[map->player.y][map->player.x] = '0';
+		map->player.y = map->player.y + 1;
+		map->map[map->player.y][map->player.x] = 'P';
+	}
+	print_move(*move);
+	return ;
 }
 
-void	move_left(t_map *map)
+void	move_left(t_all *all, t_map *map, int *move)
 {
-	(void)map;
+	if (map->map[map->player.y][map->player.x - 1] == '1')
+		return ;
+	*move += 1;
+	if (map->map[map->player.y][map->player.x - 1] == 'C')
+	{
+		map->collect++;
+		map->map[map->player.y][map->player.x] = '0';
+	}
+	if (map->map[map->player.y][map->player.x - 1] == 'E')
+	{
+		if (map->goal == map->collect)
+		{
+			ft_trash(all);
+			system("leaks so_long");
+			exit(0);
+		}
+	}
+	if (map->map[map->player.y][map->player.x - 1] != 'E')
+	{
+		map->map[map->player.y][map->player.x] = '0';
+		map->player.x = map->player.x - 1;
+		map->map[map->player.y][map->player.x] = 'P';
+	}
+	print_move(*move);
+	return ;
 }
 
-void	move_right(t_map *map)
+void	move_right(t_all *all, t_map *map, int *move)
 {
-	(void)map;
+	if (map->map[map->player.y][map->player.x + 1] == '1')
+		return ;
+	*move += 1;
+	if (map->map[map->player.y][map->player.x + 1] == 'C')
+	{
+		map->collect++;
+		map->map[map->player.y][map->player.x] = '0';
+	}
+	if (map->map[map->player.y][map->player.x + 1] == 'E')
+	{
+		if (map->goal == map->collect)
+		{
+			ft_trash(all);
+			system("leaks so_long");
+			exit(0);
+		}
+	}
+	if (map->map[map->player.y][map->player.x + 1] != 'E')
+	{
+		map->map[map->player.y][map->player.x] = '0';
+		map->player.x = map->player.x + 1;
+		map->map[map->player.y][map->player.x] = 'P';
+	}
+	print_move(*move);
+	return ;
 }
 
-void	press_move(t_map *map, char move)
+void	press_move(t_all *all, t_map *map, char m)
 {
-	int	move;
+	static int	move = 0;
 
-	move = 0
-	if (move == 'U')
-		move_up(map);
-	else if (move == 'D')
-		move_down(map);
-	else if (move == 'L')
-		move_left(map);
-	else if (move == 'R')
-		move_right(map);
-	if (move == 0)
-		printf("You did %d move\r", ++move);
-	else
-		printf("You did %d moves\r", ++move);
+	if (m == 'U')
+		move_up(all, map, &move);
+	else if (m == 'D')
+		move_down(all, map, &move);
+	else if (m == 'L')
+		move_left(all, map, &move);
+	else if (m == 'R')
+		move_right(all, map, &move);
+	reset_image_put_to_window(all);
 }
