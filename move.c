@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:01:34 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/01 16:07:43 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/02 12:26:56 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	move_up(t_all *all, t_map *map, int *move)
 		if (map->goal == map->collect)
 		{
 			ft_trash(all);
-			system("leaks so_long");
 			exit(0);
 		}
 	}
@@ -56,7 +55,6 @@ void	move_down(t_all *all, t_map *map, int *move)
 		if (map->goal == map->collect)
 		{
 			ft_trash(all);
-			system("leaks so_long");
 			exit(0);
 		}
 	}
@@ -85,7 +83,6 @@ void	move_left(t_all *all, t_map *map, int *move)
 		if (map->goal == map->collect)
 		{
 			ft_trash(all);
-			system("leaks so_long");
 			exit(0);
 		}
 	}
@@ -114,7 +111,6 @@ void	move_right(t_all *all, t_map *map, int *move)
 		if (map->goal == map->collect)
 		{
 			ft_trash(all);
-			system("leaks so_long");
 			exit(0);
 		}
 	}
