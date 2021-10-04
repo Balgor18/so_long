@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/01 15:39:14 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/04 10:25:25 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	init_char_map(t_char_map *cm);
 
 void	start_mlx(t_mlx *mlx, t_all *all);
 void	put_texture_in_map(t_all *all);
-void	press_move(t_all *all, t_map *map, char move);
+int		press_move(t_all *all, t_map *map, char move);
 
 /*
 ** ===============================================

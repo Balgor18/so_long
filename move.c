@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:01:34 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/02 12:26:56 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/04 10:26:56 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	move_up(t_all *all, t_map *map, int *move)
 	{
 		if (map->goal == map->collect)
 		{
+			ft_putchar_fd('\n', 1);
 			ft_trash(all);
 			exit(0);
 		}
@@ -54,6 +55,7 @@ void	move_down(t_all *all, t_map *map, int *move)
 	{
 		if (map->goal == map->collect)
 		{
+			ft_putchar_fd('\n', 1);
 			ft_trash(all);
 			exit(0);
 		}
@@ -82,6 +84,7 @@ void	move_left(t_all *all, t_map *map, int *move)
 	{
 		if (map->goal == map->collect)
 		{
+			ft_putchar_fd('\n', 1);
 			ft_trash(all);
 			exit(0);
 		}
@@ -110,6 +113,7 @@ void	move_right(t_all *all, t_map *map, int *move)
 	{
 		if (map->goal == map->collect)
 		{
+			ft_putchar_fd('\n', 1);
 			ft_trash(all);
 			exit(0);
 		}
@@ -124,7 +128,7 @@ void	move_right(t_all *all, t_map *map, int *move)
 	return ;
 }
 
-void	press_move(t_all *all, t_map *map, char m)
+int	press_move(t_all *all, t_map *map, char m)
 {
 	static int	move = 0;
 
@@ -136,5 +140,7 @@ void	press_move(t_all *all, t_map *map, char m)
 		move_left(all, map, &move);
 	else if (m == 'R')
 		move_right(all, map, &move);
-	reset_image_put_to_window(all);
+	if (m != 'E')
+		reset_image_put_to_window(all);
+	return (move);
 }

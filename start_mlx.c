@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/02 12:30:53 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/04 10:27:08 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	key_hook(int key, t_all *all)
 {
 	if (key == ESCAPE)
 	{
+		if (press_move(all, &all->map, 'E') != 0)
+			ft_putchar_fd('\n', 1);
 		mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
 		ft_trash(all);
 		exit(0);
@@ -40,11 +42,11 @@ void	reset_image_put_to_window(t_all *all)
 	put_texture_in_map(all);
 	mlx_loop(all->mlx.mlx);
 }
-#include <stdio.h>
-int	mouse_hook(int mouse, t_all *all)
+
+int	ft_close(t_all *all)
 {
-	(void)all;
-	printf("mouse = %d\n", mouse);
+	ft_trash(all);
+	exit(0);
 	return (0);
 }
 
@@ -59,10 +61,8 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	image_in_struct(&mlx->collectible, "texture/collectible.xpm", mlx->mlx);
 	verif_width_and_height(all, mlx);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
-	mlx_hook(mlx->mlx_win, 4, 1L << 0, key_hook, all);
-	mlx_hook(mlx->mlx_win, 8, 1L << 5, mouse_hook, all);
-	//mlx_key_hook(mlx->mlx_win, key_hook, all);
-	//mlx_mouse_hook(mlx->mlx_win, mouse_hook, all);
+	mlx_hook(mlx->mlx_win, 3, 1L << 0, key_hook, all);
+	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
 	if (mlx->width == WIDTH || mlx->height == HEIGHT)
 		calcul_picture_size(all);
 	put_texture_in_map(all);
