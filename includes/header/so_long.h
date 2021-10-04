@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/04 10:25:25 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:48:51 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../libft/gnl/get_next_line.h"
-#  include "../mlx/mlx.h"
+
 /*
 ** Boolean
 */

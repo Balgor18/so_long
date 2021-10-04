@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/04 10:27:08 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/04 17:55:28 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	image_in_struct(&mlx->collectible, "texture/collectible.xpm", mlx->mlx);
 	verif_width_and_height(all, mlx);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
-	mlx_hook(mlx->mlx_win, 3, 1L << 0, key_hook, all);
+	mlx_hook(mlx->mlx_win, 2, 1L << 0, key_hook, all);
+	//mlx_hook(mlx->mlx_win, 3, 1L << 0, key_hook, all);
+	mlx_do_key_autorepeatoff(mlx->mlx);
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
 	if (mlx->width == WIDTH || mlx->height == HEIGHT)
 		calcul_picture_size(all);

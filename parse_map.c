@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/30 16:40:36 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:30:34 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,38 @@ int	line_in_file(char *file_name)
 	return (nb_line);
 }
 
+int	malloc_map(char *s, t_all *all)
+{
+	all->map.len = line_in_file(s);
+	all->map.map = malloc(sizeof(all->map.map) * all->map.len);
+	if (!all->map.map)
+		return (FAILURE);
+	return (SUCCES);
+}
+
 int	split_map(char *s, t_all *all)
 {
 	char	*line;
 	int		fd;
 	int		i;
+	int		ret;
 
-	all->map.len = line_in_file(s);
 	i = -1;
 	fd = open(s, O_RDONLY);
-	all->map.map = malloc(sizeof(all->map.map) * all->map.len);
-	if (!all->map.map)
+	if (!malloc_map(s, all))
 		return (FAILURE);
-	while (get_next_line(fd, &line) > 0)
+	ret = get_next_line(fd, &line);
+	if (!*line)
+	{
+		error_msg("Empty file\n");
+		free(line);
+		exit (1);
+	}
+	while (ret > 0)
 	{
 		all->map.map[++i] = ft_strdup(line);
 		free(line);
+		ret = get_next_line(fd, &line);
 	}
 	free(line);
 	return (SUCCES);
