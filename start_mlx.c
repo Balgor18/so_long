@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/04 17:55:28 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/05 11:19:19 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,34 @@ int	ft_close(t_all *all)
 	exit(0);
 	return (0);
 }
-
+#include <stdio.h>
 	// bonus use mlx_string_put
 void	start_mlx(t_mlx *mlx, t_all *all)
 {
 	mlx->mlx = mlx_init();
-	image_in_struct(&mlx->player, "texture/player.xpm", mlx->mlx);
-	image_in_struct(&mlx->ground, "texture/ground.xpm", mlx->mlx);
-	image_in_struct(&mlx->wall, "texture/wall.xpm", mlx->mlx);
-	image_in_struct(&mlx->exit, "texture/exit.xpm", mlx->mlx);
-	image_in_struct(&mlx->collectible, "texture/collectible.xpm", mlx->mlx);
+	if (!image_in_struct(&mlx->player, "texture/player.xpm", mlx->mlx))
+		return ;
+	if (!image_in_struct(&mlx->ground, "texture/ground.xpm", mlx->mlx))
+		return ;
+	if (!image_in_struct(&mlx->wall, "texture/wall.xpm", mlx->mlx))
+		return ;
+	if (!image_in_struct(&mlx->exit, "texture/exit.xpm", mlx->mlx))
+		return ;
+	if (!image_in_struct(&mlx->collectible, "texture/collectible.xpm",
+			mlx->mlx))
+		return ;
+	/*printf("addr player = %s\n", mlx->player.addr);
+	printf("addr ground = %s\n", mlx->ground.addr);
+	printf("addr wall = %s\n", mlx->wall.addr);
+	printf("addr exit = %s\n", mlx->exit.addr);
+	printf("addr collectible = %s\n", mlx->collectible.addr);*/
 	verif_width_and_height(all, mlx);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
+	#if LINUX
 	mlx_hook(mlx->mlx_win, 2, 1L << 0, key_hook, all);
-	//mlx_hook(mlx->mlx_win, 3, 1L << 0, key_hook, all);
+	#elif MAC_OS
+	mlx_hook(mlx->mlx_win, 3, 1L << 0, key_hook, all);
+	#endif
 	mlx_do_key_autorepeatoff(mlx->mlx);
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
 	if (mlx->width == WIDTH || mlx->height == HEIGHT)

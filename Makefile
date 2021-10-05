@@ -1,6 +1,6 @@
 NAME = so_long
 
-CC = gcc
+CC = clang
 
 CFLAGS = -Wall -Wextra -Werror -g
 
@@ -24,6 +24,7 @@ SRC =	init.c\
 		print.c \
 		start_mlx.c \
 		image.c \
+		texture.c\
 		trash.c \
 		verif.c
 
@@ -37,14 +38,12 @@ ifeq ($(OS), Linux)
 	INCLUDE_ADD = -D LINUX
 	WIDTH = 0
 	HEIGHT = 0
-	SRC += texture_mlx.c
 else
 	MINILIBX = -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
 	MLX = @make -C includes/mlx
 	INCLUDE_ADD = -D MAC_OS
 	WIDTH = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$2}')
 	HEIGHT = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$4}')
-	SRC += texture.c
 endif
 
 all: lib_color mlx libft $(NAME)
@@ -77,15 +76,15 @@ mlx :
 norme :
 	@make -C includes/libft/ norme
 	@make -C includes/lib_color/ norme
-	@norminette ${SRC} texture_mlx.c texture.c
+	@norminette ${SRC} texture.c
 	@norminette includes/header/*.h
 
 clean :
 	@echo "$(RED)Clean file...$(WHITE)"
-	@$(RM) $(OBJ) texture_mlx.o texture.o
+	@$(RM) $(OBJ) texture.o
 	@make -s -C includes/libft/ clean
 	@make -s -C includes/lib_color/ clean
-	@make -s -C includes/mlx/ clean
+	$(MLX) clean
 	@echo "$(GREEN)-->[OK] $(WHITE)\n"
 
 fclean : clean

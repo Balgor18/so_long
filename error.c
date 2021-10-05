@@ -6,12 +6,26 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 21:20:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/28 12:23:30 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:05:45 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/header/so_long.h"
 #include "includes/lib_color/color.h"
+
+int	error_file(char *file)
+{
+	red();
+	ft_putstr_fd("Error\n", STDERR);
+	reset();
+	white();
+	ft_putstr_fd("File does not exist ", STDERR);
+	red();
+	ft_putstr_fd(file, STDERR);
+	reset();
+	ft_putchar_fd('\n', STDERR);
+	return (FAILURE);
+}
 
 void	error_close(int fd, char *s)
 {
@@ -36,7 +50,7 @@ int	error_char(int p, int e, int c)
 int	error_miss_arg(void)
 {
 	red();
-	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("Error\n", STDERR);
 	reset();
 	ft_putstr_fd("usage : ./so_long [", STDERR);
 	cyan();

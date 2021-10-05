@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/04 17:48:51 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:17:57 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,6 @@
 ** ===============================================
 ** ===================  Struct  ==================
 ** ===============================================
-*/
-
-/*
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 */
 
 typedef struct s_char_map
@@ -152,7 +142,7 @@ int		press_move(t_all *all, t_map *map, char move);
 ** ==================  Texture  ==================
 ** ===============================================
 */
-void	image_in_struct(t_img *i, char *file, void *mlx);
+int		image_in_struct(t_img *i, char *file, void *mlx);
 void	calcul_picture_size(t_all *all);
 void	reset_image_put_to_window(t_all *all);
 
@@ -165,6 +155,7 @@ int		error_miss_arg(void);
 int		error_msg(char *s);
 int		error_char(int p, int e, int c);
 void	error_close(int fd, char *s);
+int		error_file(char *file);
 
 /*
 ** ===============================================

@@ -6,12 +6,13 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:49:32 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/04 17:14:50 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:16:53 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/header/so_long.h"
 
+#if MAC_OS
 void	verif_width_and_height(t_all *all, t_mlx *mlx)
 {
 	int		width;
@@ -32,3 +33,22 @@ void	verif_width_and_height(t_all *all, t_mlx *mlx)
 	else
 		mlx->height = HEIGHT;
 }
+#elif LINUX
+void	verif_width_and_height(t_all *all, t_mlx *mlx)
+{
+	int		width;
+	int		maxwidth;
+	int		height;
+	int		maxheight;
+
+	mlx_get_screen_size(mlx->mlx, &mlx->width, &mlx->height);
+	maxwidth = mlx->width / mlx->wall.width;
+	maxheight = mlx->height / mlx->wall.height;
+	width = ft_strlen(all->map.map[0]);
+	height = all->map.len;
+	if (width < maxwidth)
+		mlx->width = width * mlx->wall.width;
+	if (height < maxheight)
+		mlx->height = height * mlx->wall.height;
+}
+#endif
