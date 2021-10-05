@@ -6,13 +6,13 @@
 #    By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/09 15:35:09 by fcatinau          #+#    #+#              #
-#    Updated: 2021/09/15 18:36:11 by fcatinau         ###   ########.fr        #
+#    Updated: 2021/10/05 14:13:07 by fcatinau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=libcolor.a
 
-CC=gcc
+CC=clang
 
 CFLAGS=-Wall -Wextra -Werror
 

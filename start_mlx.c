@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/05 11:19:19 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:41:18 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_close(t_all *all)
 	exit(0);
 	return (0);
 }
-#include <stdio.h>
+
 	// bonus use mlx_string_put
 void	start_mlx(t_mlx *mlx, t_all *all)
 {
@@ -65,6 +65,7 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	if (!image_in_struct(&mlx->collectible, "texture/collectible.xpm",
 			mlx->mlx))
 		return ;
+	copy_addr_pict(all, &mlx->player);
 	/*printf("addr player = %s\n", mlx->player.addr);
 	printf("addr ground = %s\n", mlx->ground.addr);
 	printf("addr wall = %s\n", mlx->wall.addr);
@@ -79,8 +80,8 @@ void	start_mlx(t_mlx *mlx, t_all *all)
 	#endif
 	mlx_do_key_autorepeatoff(mlx->mlx);
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
-	if (mlx->width == WIDTH || mlx->height == HEIGHT)
-		calcul_picture_size(all);
+	//if (mlx->width == WIDTH || mlx->height == HEIGHT)
+	//	calcul_picture_size(all);
 	put_texture_in_map(all);
 	mlx_loop(mlx->mlx);
 }

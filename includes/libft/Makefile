@@ -6,14 +6,14 @@
 #    By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/09 15:35:09 by fcatinau          #+#    #+#              #
-#    Updated: 2021/08/31 15:00:56 by fcatinau         ###   ########.fr        #
+#    Updated: 2021/10/05 14:12:54 by fcatinau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME=libft.a
 
-CC=gcc
+CC=clang
 
 CFLAGS=-Wall -Wextra -Werror
 

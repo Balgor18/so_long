@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/05 09:17:57 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:37:52 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,25 @@ typedef struct s_char_map
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		width;
 	int		height;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 }				t_img;
+
+/*
+** Buffer
+*/
+typedef struct s_buff
+{
+	int	*player;
+	int	*ground;
+	int	*wall;
+	int	*exit;
+	int	*collectible;
+}				t_buff;
 
 /*
 ** mlx
@@ -82,6 +94,8 @@ typedef struct s_mlx
 	void	*mlx_win;
 	int		width;
 	int		height;
+	t_buff	buffer;
+	t_img	window;
 	t_img	player;
 	t_img	ground;
 	t_img	wall;

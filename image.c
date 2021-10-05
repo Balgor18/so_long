@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/05 11:41:32 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/05 18:39:22 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ int	image_in_struct(t_img *i, char *file, void *mlx)
 	}
 	close(fd);
 	i->img = mlx_xpm_file_to_image(mlx, file, &i->width, &i->height);
-	i->addr = mlx_get_data_addr(i->img, &i->bits_per_pixel,
+	i->addr = (int *)mlx_get_data_addr(i->img, &i->bits_per_pixel,
 			&i->line_length, &i->endian);
-	printf("%s i->addr = |%d|%d|%d|%d|\n", file, i->addr[0], i->addr[1], i->addr[2], i->addr[3]);
-	if (i->addr[3] == -1)
-		i->addr[3] = (unsigned char)50;
-	printf("%s i->addr = |%d|%d|%d|%d|\n------\n", file, i->addr[0], i->addr[1], i->addr[2], i->addr[3]);
 	return (SUCCES);
 }
 

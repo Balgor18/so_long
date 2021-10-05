@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:01:34 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/04 10:26:56 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/05 16:25:09 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ void	move_up(t_all *all, t_map *map, int *move)
 {
 	if (map->map[map->player.y - 1][map->player.x] == '1')
 		return ;
-	*move += 1;
-	if (map->map[map->player.y - 1][map->player.x] == 'C')
-	{
-		map->collect++;
-		map->map[map->player.y][map->player.x] = '0';
-	}
 	if (map->map[map->player.y - 1][map->player.x] == 'E')
 	{
 		if (map->goal == map->collect)
@@ -30,6 +24,13 @@ void	move_up(t_all *all, t_map *map, int *move)
 			ft_trash(all);
 			exit(0);
 		}
+		return ;
+	}
+	*move += 1;
+	if (map->map[map->player.y - 1][map->player.x] == 'C')
+	{
+		map->collect++;
+		map->map[map->player.y][map->player.x] = '0';
 	}
 	if (map->map[map->player.y - 1][map->player.x] != 'E')
 	{
@@ -45,12 +46,6 @@ void	move_down(t_all *all, t_map *map, int *move)
 {
 	if (map->map[map->player.y + 1][map->player.x] == '1')
 		return ;
-	*move += 1;
-	if (map->map[map->player.y + 1][map->player.x] == 'C')
-	{
-		map->collect++;
-		map->map[map->player.y][map->player.x] = '0';
-	}
 	if (map->map[map->player.y + 1][map->player.x] == 'E')
 	{
 		if (map->goal == map->collect)
@@ -59,6 +54,13 @@ void	move_down(t_all *all, t_map *map, int *move)
 			ft_trash(all);
 			exit(0);
 		}
+		return ;
+	}
+	*move += 1;
+	if (map->map[map->player.y + 1][map->player.x] == 'C')
+	{
+		map->collect++;
+		map->map[map->player.y][map->player.x] = '0';
 	}
 	if (map->map[map->player.y + 1][map->player.x] != 'E')
 	{
@@ -74,12 +76,6 @@ void	move_left(t_all *all, t_map *map, int *move)
 {
 	if (map->map[map->player.y][map->player.x - 1] == '1')
 		return ;
-	*move += 1;
-	if (map->map[map->player.y][map->player.x - 1] == 'C')
-	{
-		map->collect++;
-		map->map[map->player.y][map->player.x] = '0';
-	}
 	if (map->map[map->player.y][map->player.x - 1] == 'E')
 	{
 		if (map->goal == map->collect)
@@ -88,6 +84,13 @@ void	move_left(t_all *all, t_map *map, int *move)
 			ft_trash(all);
 			exit(0);
 		}
+		return ;
+	}
+	*move += 1;
+	if (map->map[map->player.y][map->player.x - 1] == 'C')
+	{
+		map->collect++;
+		map->map[map->player.y][map->player.x] = '0';
 	}
 	if (map->map[map->player.y][map->player.x - 1] != 'E')
 	{
@@ -103,12 +106,6 @@ void	move_right(t_all *all, t_map *map, int *move)
 {
 	if (map->map[map->player.y][map->player.x + 1] == '1')
 		return ;
-	*move += 1;
-	if (map->map[map->player.y][map->player.x + 1] == 'C')
-	{
-		map->collect++;
-		map->map[map->player.y][map->player.x] = '0';
-	}
 	if (map->map[map->player.y][map->player.x + 1] == 'E')
 	{
 		if (map->goal == map->collect)
@@ -117,6 +114,13 @@ void	move_right(t_all *all, t_map *map, int *move)
 			ft_trash(all);
 			exit(0);
 		}
+		return ;
+	}
+	*move += 1;
+	if (map->map[map->player.y][map->player.x + 1] == 'C')
+	{
+		map->collect++;
+		map->map[map->player.y][map->player.x] = '0';
 	}
 	if (map->map[map->player.y][map->player.x + 1] != 'E')
 	{
