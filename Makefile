@@ -17,13 +17,14 @@ CYAN = $(shell tput setaf 37)
 WHITE = $(shell tput sgr0)
 
 SRC =	init.c\
+		end.c\
 		error.c \
+		image.c \
 		main.c \
 		move.c \
 		parse_map.c \
 		print.c \
 		start_mlx.c \
-		image.c \
 		texture.c\
 		trash.c \
 		verif.c
@@ -76,7 +77,7 @@ mlx :
 norme :
 	@make -C includes/libft/ norme
 	@make -C includes/lib_color/ norme
-	@norminette ${SRC} texture.c
+	@norminette ${SRC}
 	@norminette includes/header/*.h
 
 clean :

@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/05 18:37:52 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/06 18:38:12 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_mlx
 	void	*mlx_win;
 	int		width;
 	int		height;
-	t_buff	buffer;
+	//t_buff	buffer;
 	t_img	window;
 	t_img	player;
 	t_img	ground;
@@ -147,7 +147,7 @@ void	init_char_map(t_char_map *cm);
 ** ===============================================
 */
 
-void	start_mlx(t_mlx *mlx, t_all *all);
+int		start_mlx(t_mlx *mlx, t_all *all);
 void	put_texture_in_map(t_all *all);
 int		press_move(t_all *all, t_map *map, char move);
 
@@ -156,9 +156,9 @@ int		press_move(t_all *all, t_map *map, char move);
 ** ==================  Texture  ==================
 ** ===============================================
 */
-int		image_in_struct(t_img *i, char *file, void *mlx);
-void	calcul_picture_size(t_all *all);
+int		image_in_struct(t_all *all, t_img *i, char *file, void *mlx);
 void	reset_image_put_to_window(t_all *all);
+int		image_to_struct(t_mlx *mlx, t_all *all);
 
 /*
 ** ===============================================
@@ -201,4 +201,6 @@ void	free_map(t_map *map);
 ** ===============================================
 */
 void	print_move(int nb);
+
+void	end_exit(t_all *all);
 #endif

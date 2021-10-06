@@ -6,20 +6,20 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/05 18:39:22 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/06 18:58:44 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/header/so_long.h"
-#include <stdio.h>
-int	image_in_struct(t_img *i, char *file, void *mlx)
+
+int	image_in_struct(t_all *all, t_img *i, char *file, void *mlx)
 {
 	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		close(fd);
+		ft_trash(all);
 		return (error_file(file));
 	}
 	close(fd);
@@ -72,22 +72,22 @@ void	put_texture_in_map(t_all *all)
 	}
 }
 
-void	modify_picture_size(t_img *i, int width, int height)
+int	image_to_struct(t_mlx *mlx, t_all *all)
 {
-	i->width = width;
-	i->height = height;
-}
-
-void	calcul_picture_size(t_all *all)
-{
-	int	width_picture;
-	int	height_picture;
-
-	width_picture = 20;
-	height_picture = 20;
-	modify_picture_size(&all->mlx.player, width_picture, height_picture);
-	modify_picture_size(&all->mlx.ground, width_picture, height_picture);
-	modify_picture_size(&all->mlx.wall, width_picture, height_picture);
-	modify_picture_size(&all->mlx.exit, width_picture, height_picture);
-	modify_picture_size(&all->mlx.collectible, width_picture, height_picture);
+	if (!image_in_struct(all, &mlx->player, "texture/player.xpm", mlx->mlx))
+		return (FAILURE);
+	if (!image_in_struct(all, &mlx->ground, "texture/ground.xpm", mlx->mlx))
+		return (FAILURE);
+	if (!image_in_struct(all, &mlx->wall, "texture/wall.xpm", mlx->mlx))
+		return (FAILURE);
+	if (!image_in_struct(all, &mlx->exit, "texture/exit.xpm", mlx->mlx))
+		return (FAILURE);
+	if (!image_in_struct(all, &mlx->collectible, "texture/collectible.xpm",
+			mlx->mlx))
+		return (FAILURE);
+	mlx->window.img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
+	mlx->window.addr = (int *)mlx_get_data_addr(mlx->window.img,
+			&mlx->window.bits_per_pixel, &mlx->window.line_length,
+			&mlx->window.endian);
+	return (SUCCES);
 }

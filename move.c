@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:01:34 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/05 16:25:09 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/06 18:34:37 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ void	move_up(t_all *all, t_map *map, int *move)
 	if (map->map[map->player.y - 1][map->player.x] == 'E')
 	{
 		if (map->goal == map->collect)
-		{
-			ft_putchar_fd('\n', 1);
-			ft_trash(all);
-			exit(0);
-		}
+			end_exit(all);
 		return ;
 	}
 	*move += 1;
@@ -49,11 +45,7 @@ void	move_down(t_all *all, t_map *map, int *move)
 	if (map->map[map->player.y + 1][map->player.x] == 'E')
 	{
 		if (map->goal == map->collect)
-		{
-			ft_putchar_fd('\n', 1);
-			ft_trash(all);
-			exit(0);
-		}
+			end_exit(all);
 		return ;
 	}
 	*move += 1;
@@ -79,11 +71,7 @@ void	move_left(t_all *all, t_map *map, int *move)
 	if (map->map[map->player.y][map->player.x - 1] == 'E')
 	{
 		if (map->goal == map->collect)
-		{
-			ft_putchar_fd('\n', 1);
-			ft_trash(all);
-			exit(0);
-		}
+			end_exit(all);
 		return ;
 	}
 	*move += 1;
@@ -109,11 +97,7 @@ void	move_right(t_all *all, t_map *map, int *move)
 	if (map->map[map->player.y][map->player.x + 1] == 'E')
 	{
 		if (map->goal == map->collect)
-		{
-			ft_putchar_fd('\n', 1);
-			ft_trash(all);
-			exit(0);
-		}
+			end_exit(all);
 		return ;
 	}
 	*move += 1;

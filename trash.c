@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:34:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/05 09:30:58 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/06 18:32:14 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	free_map(t_map *map)
 		free(map->map[i++]);
 	free(map->map);
 }
+#if LINUX
 
 void	free_mlx(t_mlx	*mlx)
 {
@@ -38,12 +39,30 @@ void	free_mlx(t_mlx	*mlx)
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	if (mlx->mlx)
 	{
-		#if LINUX
 		mlx_destroy_display(mlx->mlx);
-		#endif
 		free(mlx->mlx);
 	}
 }
+#else
+
+void	free_mlx(t_mlx	*mlx)
+{
+	if (mlx->player.img)
+		mlx_destroy_image(mlx->mlx, mlx->player.img);
+	if (mlx->wall.img)
+		mlx_destroy_image(mlx->mlx, mlx->wall.img);
+	if (mlx->ground.img)
+		mlx_destroy_image(mlx->mlx, mlx->ground.img);
+	if (mlx->exit.img)
+		mlx_destroy_image(mlx->mlx, mlx->exit.img);
+	if (mlx->collectible.img)
+		mlx_destroy_image(mlx->mlx, mlx->collectible.img);
+	if (mlx->mlx_win)
+		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	if (mlx->mlx)
+		free(mlx->mlx);
+}
+#endif
 
 void	ft_trash(t_all *all)
 {
