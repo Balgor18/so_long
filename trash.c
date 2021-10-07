@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:34:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/06 18:32:14 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/07 11:58:16 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	free_mlx(t_mlx	*mlx)
 		mlx_destroy_image(mlx->mlx, mlx->exit.img);
 	if (mlx->collectible.img)
 		mlx_destroy_image(mlx->mlx, mlx->collectible.img);
+	if (mlx->window.img)
+		mlx_destroy_image(mlx->mlx, mlx->window.img);
 	if (mlx->mlx_win)
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	if (mlx->mlx)
@@ -57,6 +59,8 @@ void	free_mlx(t_mlx	*mlx)
 		mlx_destroy_image(mlx->mlx, mlx->exit.img);
 	if (mlx->collectible.img)
 		mlx_destroy_image(mlx->mlx, mlx->collectible.img);
+	if (mlx->window.img)
+		mlx_destroy_image(mlx->mlx, mlx->window.img);
 	if (mlx->mlx_win)
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
 	if (mlx->mlx)

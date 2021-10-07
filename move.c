@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:01:34 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/06 18:34:37 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:43:42 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	move_up(t_all *all, t_map *map, int *move)
 		map->player.y = map->player.y - 1;
 		map->map[map->player.y][map->player.x] = 'P';
 	}
-	print_move(*move);
 	return ;
 }
 
@@ -60,7 +59,6 @@ void	move_down(t_all *all, t_map *map, int *move)
 		map->player.y = map->player.y + 1;
 		map->map[map->player.y][map->player.x] = 'P';
 	}
-	print_move(*move);
 	return ;
 }
 
@@ -86,7 +84,6 @@ void	move_left(t_all *all, t_map *map, int *move)
 		map->player.x = map->player.x - 1;
 		map->map[map->player.y][map->player.x] = 'P';
 	}
-	print_move(*move);
 	return ;
 }
 
@@ -112,7 +109,6 @@ void	move_right(t_all *all, t_map *map, int *move)
 		map->player.x = map->player.x + 1;
 		map->map[map->player.y][map->player.x] = 'P';
 	}
-	print_move(*move);
 	return ;
 }
 
@@ -129,6 +125,6 @@ int	press_move(t_all *all, t_map *map, char m)
 	else if (m == 'R')
 		move_right(all, map, &move);
 	if (m != 'E')
-		reset_image_put_to_window(all);
+		reset_image_put_to_window(all, move);
 	return (move);
 }

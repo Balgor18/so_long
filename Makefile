@@ -29,7 +29,23 @@ SRC =	init.c\
 		trash.c \
 		verif.c
 
+SRC_BONUS +=	init.c\
+				end.c\
+				ennemy_bonus.c\
+				error.c \
+				image_bonus.c \
+				main.c \
+				move.c \
+				parse_map.c \
+				print_bonus.c \
+				start_mlx_bonus.c\
+				texture.c\
+				trash_bonus.c \
+				verif_bonus.c
+
 OBJ = ${SRC:.c=.o}
+
+OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
 OS = $(shell uname)
 
@@ -59,6 +75,11 @@ lib_color :
 	@make -C includes/lib_color/
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 
+bonus : lib_color mlx libft $(OBJ_BONUS)
+	@echo "\n$(YELLOW)Compiling so_long_bonus ...$(WHITE)"
+	$(CC) $(CFLAGS) -o so_long_bonus $(OBJ_BONUS) -Lincludes/libft -lft -Lincludes/lib_color -lcolor $(MINILIBX)
+	@echo "$(GREEN)-->[OK] $(WHITE)"
+
 libft :
 	@echo "$(YELLOW)Compiling libft...$(WHITE)"
 	make -C includes/libft/
@@ -82,7 +103,7 @@ norme :
 
 clean :
 	@echo "$(RED)Clean file...$(WHITE)"
-	@$(RM) $(OBJ) texture.o
+	@$(RM) $(OBJ) $(OBJ_BONUS)
 	@make -s -C includes/libft/ clean
 	@make -s -C includes/lib_color/ clean
 	$(MLX) clean
@@ -90,7 +111,7 @@ clean :
 
 fclean : clean
 	@echo "$(RED)Clean exec...$(WHITE)"
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME)_bonus
 	@make -C includes/libft/ fclean
 	@make -C includes/lib_color/ fclean
 	@echo "$(GREEN)-->[OK] $(WHITE)\n"

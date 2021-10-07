@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/06 18:38:12 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/07 19:35:29 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #  include "key_keyboard.h"
 #  include "../mlx/mlx.h"
 # endif
+#  include "../mlx/mlx.h"
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../libft/gnl/get_next_line.h"
@@ -50,6 +51,12 @@
 # define STDOUT 1
 
 /*
+** Color
+*/
+# define WHITE 16777215
+# define ALPHA 0xff000000
+
+/*
 ** ===============================================
 ** ===================  Struct  ==================
 ** ===============================================
@@ -74,33 +81,32 @@ typedef struct s_img
 }				t_img;
 
 /*
-** Buffer
+** Ennemy
 */
-typedef struct s_buff
+typedef struct s_ennemy
 {
-	int	*player;
-	int	*ground;
-	int	*wall;
-	int	*exit;
-	int	*collectible;
-}				t_buff;
-
+	t_img	enn0;
+	t_img	enn1;
+	t_img	enn2;
+	t_img	enn3;
+	t_img	enn4;
+}				t_ennemy;
 /*
 ** mlx
 */
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*mlx_win;
-	int		width;
-	int		height;
-	//t_buff	buffer;
-	t_img	window;
-	t_img	player;
-	t_img	ground;
-	t_img	wall;
-	t_img	exit;
-	t_img	collectible;
+	void		*mlx;
+	void		*mlx_win;
+	int			width;
+	int			height;
+	t_img		window;
+	t_img		player;
+	t_img		ground;
+	t_img		wall;
+	t_img		exit;
+	t_img		collectible;
+	t_ennemy	ennemy;
 }				t_mlx;
 
 /*
@@ -148,7 +154,7 @@ void	init_char_map(t_char_map *cm);
 */
 
 int		start_mlx(t_mlx *mlx, t_all *all);
-void	put_texture_in_map(t_all *all);
+void	put_texture_in_window(t_all *all);
 int		press_move(t_all *all, t_map *map, char move);
 
 /*
@@ -157,7 +163,7 @@ int		press_move(t_all *all, t_map *map, char move);
 ** ===============================================
 */
 int		image_in_struct(t_all *all, t_img *i, char *file, void *mlx);
-void	reset_image_put_to_window(t_all *all);
+void	reset_image_put_to_window(t_all *all, int move);
 int		image_to_struct(t_mlx *mlx, t_all *all);
 
 /*
@@ -200,7 +206,7 @@ void	free_map(t_map *map);
 ** ===================  Print  ===================
 ** ===============================================
 */
-void	print_move(int nb);
+void	print_move(t_all *all, int nb);
 
 void	end_exit(t_all *all);
 #endif
