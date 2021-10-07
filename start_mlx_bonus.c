@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 17:36:37 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/07 19:51:02 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	key_hook(int key, t_all *all)
 {
 	if (key == ESCAPE)
 	{
-		if (press_move(all, &all->map, 'E') != 0)
-			ft_putchar_fd('\n', 1);
 		mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
 		ft_trash(all);
 		exit(0);
@@ -66,7 +64,7 @@ int	start_mlx(t_mlx *mlx, t_all *all)
 		return (FAILURE);
 	mlx_string_put(mlx->mlx, mlx->mlx_win, 82, 30, WHITE, nb);
 	free(nb);
-	mlx_loop_hook();
+	//mlx_loop_hook();
 	mlx_loop(mlx->mlx);
 	return (SUCCES);
 }

@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 19:45:28 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/07 19:48:12 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,16 @@ void	pixel_to_image(t_img *win, t_img *i, int win_pixel, int picture_pixel)
 	pixel = 0;
 	while (pixel < picture_pixel && win_pixel < (win->width * win->height))
 	{
-		if (pibis == 64)
-		{
-			win_pixel += win->width;
-			pibis = 0;
-		}
 		if ((unsigned int)i->addr[pixel] != ALPHA)
 			win->addr[win_pixel] = i->addr[pixel];
 		printf("win_pixel = %d\n", win_pixel);
 		win_pixel++;
 		pixel++;
+		if (pibis == 64)
+		{
+			win_pixel += win->width;
+			pibis = 0;
+		}
 		pibis++;
 	}
 }

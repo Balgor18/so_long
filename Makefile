@@ -30,7 +30,7 @@ SRC =	init.c\
 		verif.c
 
 SRC_BONUS +=	init.c\
-				end.c\
+				end_bonus.c\
 				ennemy_bonus.c\
 				error.c \
 				image_bonus.c \
