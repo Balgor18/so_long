@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 19:35:55 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/07 21:21:37 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	put_texture_in_window(t_all *all)
 
 	j = 0;
 	line = 0;
-	printf("win_size addr = %d\n", all->mlx.window.width * all->mlx.window.height);
+	//printf("win_size addr = %d\n", all->mlx.window.width * all->mlx.window.height);
 	while (all->map.len > line)
 	{
 		j = 0;
