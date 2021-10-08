@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/08 11:27:53 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:29:17 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	pixel_to_image(t_img *win, t_img *i, int win_pixel, int picture_pixel, char
 	printf("char %c\nwin_pixel avant boucle %d\npicture_pixel = %d\n", c, win_pixel, picture_pixel);
 	while (pixel <= picture_pixel && win_pixel <= (win->width * win->height))
 	{
+		printf("%x != %x \n", (unsigned int)i->addr[pixel], ALPHA);
 		if ((unsigned int)i->addr[pixel] != ALPHA)
 			win->addr[win_pixel] = i->addr[pixel];
 		win_pixel++;
