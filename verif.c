@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/01 12:51:57 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:01:04 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	verif_file_name(char *s)
 		len = 4;
 	if (ft_strncmp(s, ".ber", len) != 0)
 		return (error_msg("Bad extension file\n"));
-	return (1);
+	return (TRUE);
 }
 
 int	verif_line(char *s, char c)

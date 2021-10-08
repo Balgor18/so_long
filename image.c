@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 19:48:12 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:27:53 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	image_in_struct(t_all *all, t_img *i, char *file, void *mlx)
 	return (SUCCES);
 }
 
-#if MAC_OS
+/*#if MAC_OS
 
 void	image_in_window(t_mlx *mlx, char c, int line, int j)
 {
@@ -73,48 +73,88 @@ void	put_texture_in_window(t_all *all)
 		line++;
 	}
 }
-#elif LINUX
+#elif LINUX*/
 #include <stdio.h>
-void	pixel_to_image(t_img *win, t_img *i, int win_pixel, int picture_pixel)
+void	pixel_to_image(t_img *win, t_img *i, int win_pixel, int picture_pixel, char c)
 {
 	int	pixel;
 	int	pibis;
 
 	pibis = 0;
 	pixel = 0;
-	while (pixel < picture_pixel && win_pixel < (win->width * win->height))
+	printf("char %c\nwin_pixel avant boucle %d\npicture_pixel = %d\n", c, win_pixel, picture_pixel);
+	while (pixel <= picture_pixel && win_pixel <= (win->width * win->height))
 	{
 		if ((unsigned int)i->addr[pixel] != ALPHA)
 			win->addr[win_pixel] = i->addr[pixel];
-		printf("win_pixel = %d\n", win_pixel);
 		win_pixel++;
 		pixel++;
 		if (pibis == 64)
 		{
-			win_pixel += win->width;
+			win_pixel += win->width - 64;
 			pibis = 0;
 		}
 		pibis++;
 	}
 }
 
-void	image_in_window(t_mlx *mlx, char c, int j)
+// la texture standar et de 64 64
+// mais la bombe fais du 48 48
+// donc refaire les calculs de texture pour la bombe
+void	bomb_pixel_to_image(t_img *win, t_img *i, int win_pixel, int picture_pixel)
 {
+	int	pixel;
+	int	pibis;
+
+	pibis = 0;
+	pixel = 0;
+	printf("win_pixel avant boucle %d\npicture_pixel = %d\n", win_pixel, picture_pixel);
+	while (pixel <= picture_pixel && win_pixel <= (win->width * win->height))
+	{
+		if ((unsigned int)i->addr[pixel] != ALPHA)
+			win->addr[win_pixel] = i->addr[pixel];
+		win_pixel++;
+		pixel++;
+		if (pibis == 64)
+		{
+			win_pixel += win->width - 64;
+			pibis = 0;
+		}
+		pibis++;
+	}
+}
+
+void	image_in_window(t_mlx *mlx, char c, int j, int line)
+{
+	int	win_pixel;
+
+	if (!line)
+		win_pixel = j * 64;
+	else
+	{
+		if (j != 0)
+			win_pixel = mlx->window.width * 64 ;
+		win_pixel = (line * (mlx->window.width * 64)) + (j * 64);
+	}
+	printf("j = %d\nline = %d\n", j, line);
+	printf("-----\n%d\n", win_pixel);
 	if (c == '0' || c == 'E' || c == 'C' || c == 'P')
-		pixel_to_image(&mlx->window, &mlx->ground, j * 64,
-			mlx->ground.width * mlx->ground.height);
+		pixel_to_image(&mlx->window, &mlx->ground, win_pixel,
+			mlx->ground.width * mlx->ground.height, 'G');
 	if (c == '1')
-		pixel_to_image(&mlx->window, &mlx->wall, j * 64,
-			mlx->wall.width * mlx->wall.height);
+		pixel_to_image(&mlx->window, &mlx->wall, win_pixel,
+			mlx->wall.width * mlx->wall.height, 'W');
 	if (c == 'E')
-		pixel_to_image(&mlx->window, &mlx->exit, j * 64,
-			mlx->exit.width * mlx->exit.height);
+		pixel_to_image(&mlx->window, &mlx->exit, win_pixel,
+			mlx->exit.width * mlx->exit.height, 'E');
 	if (c == 'P')
-		pixel_to_image(&mlx->window, &mlx->player, j * 64,
-			mlx->player.width * mlx->player.height);
+		pixel_to_image(&mlx->window, &mlx->player,
+			win_pixel - (mlx->window.width * 64),
+			mlx->player.width * mlx->player.height, 'P');
 	if (c == 'C')
-		pixel_to_image(&mlx->window, &mlx->collectible, j * 64,
+		bomb_pixel_to_image(&mlx->window, &mlx->collectible, win_pixel,
 			mlx->collectible.width * mlx->collectible.height);
+	printf("----------\n");
 }
 
 void	put_texture_in_window(t_all *all)
@@ -129,15 +169,15 @@ void	put_texture_in_window(t_all *all)
 		j = 0;
 		while (j < ft_strlen(all->map.map[line]))
 		{
-			image_in_window(&all->mlx, all->map.map[line][j], j);
+			image_in_window(&all->mlx, all->map.map[line][j], j, line);
 			j++;
 		}
 		line++;
 	}
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.mlx_win,
-			all->mlx.window.img, 0, 0);
+		all->mlx.window.img, 0, 0);
 }
-#endif
+//#endif
 
 int	image_to_struct(t_mlx *mlx, t_all *all)
 {
@@ -153,6 +193,8 @@ int	image_to_struct(t_mlx *mlx, t_all *all)
 			mlx->mlx))
 		return (FAILURE);
 	verif_width_and_height(all, mlx);
+	printf("texture bomb w = %d h = %d\n", mlx->collectible.width, mlx->collectible.height);
+	printf("texture ground w = %d h = %d\n", mlx->ground.width, mlx->ground.height);
 	mlx->window.img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
 	mlx->window.addr = (int *)mlx_get_data_addr(mlx->window.img,
 			&mlx->window.bits_per_pixel, &mlx->window.line_length,
