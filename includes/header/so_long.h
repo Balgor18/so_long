@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 19:35:29 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/10 11:28:06 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_mlx
 */
 typedef struct s_player
 {
+	int	move;
 	int	x;
 	int	y;
 }				t_player;
@@ -123,6 +124,9 @@ typedef struct s_player
 */
 typedef struct s_map
 {
+	int			nb_ennemy;
+	int			*pos_ennemy_x;
+	int			*pos_ennemy_y;
 	char		**map;
 	int			goal;
 	int			collect;
@@ -155,7 +159,7 @@ void	init_char_map(t_char_map *cm);
 
 int		start_mlx(t_mlx *mlx, t_all *all);
 void	put_texture_in_window(t_all *all);
-int		press_move(t_all *all, t_map *map, char move);
+void	press_move(t_all *all, t_map *map, char m);
 
 /*
 ** ===============================================
@@ -163,8 +167,12 @@ int		press_move(t_all *all, t_map *map, char move);
 ** ===============================================
 */
 int		image_in_struct(t_all *all, t_img *i, char *file, void *mlx);
-void	reset_image_put_to_window(t_all *all, int move);
+void	reset_image_put_to_window(t_all *all);
 int		image_to_struct(t_mlx *mlx, t_all *all);
+
+// -----------------  Bonus  ---------------------
+int		ennemy_in_struct(t_all *all);
+int		anim_fire(t_all *all);
 
 /*
 ** ===============================================
@@ -190,7 +198,7 @@ void	parse_map(char *s, t_all *all);
 ** ===============================================
 */
 int		verif_file_name(char *s);
-void	verif_width_and_height(t_all *all, t_mlx *mlx);
+int		verif_width_and_height(t_all *all, t_mlx *mlx);
 int		verif_map(t_map *map);
 
 /*
@@ -200,13 +208,14 @@ int		verif_map(t_map *map);
 */
 void	ft_trash(t_all *all);
 void	free_map(t_map *map);
+void	free_mlx(t_mlx	*mlx);
 
 /*
 ** ===============================================
 ** ===================  Print  ===================
 ** ===============================================
 */
-void	print_move(t_all *all, int nb);
+void	print_move(t_all *all);
 
 void	end_exit(t_all *all);
 #endif

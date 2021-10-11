@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:34:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 11:58:16 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/10 11:34:08 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	free_mlx(t_mlx	*mlx)
 		free(mlx->mlx);
 	}
 }
-#else
+#elif MAC_OS
 
 void	free_mlx(t_mlx	*mlx)
 {

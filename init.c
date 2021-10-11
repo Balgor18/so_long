@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:52:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/01 16:48:51 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/10 11:33:01 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_mlx(t_mlx *mlx)
 	init_img(&mlx->wall);
 	init_img(&mlx->exit);
 	init_img(&mlx->collectible);
+	init_img(&mlx->window);
 }
 
 void	init_struct(t_all *all)
@@ -42,6 +43,7 @@ void	init_struct(t_all *all)
 	all->map.len = 0;
 	all->map.goal = 0;
 	all->map.collect = 0;
+	all->map.player.move = 0;
 	all->map.player.x = 0;
 	all->map.player.y = 0;
 	init_mlx(&all->mlx);

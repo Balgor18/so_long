@@ -16,10 +16,10 @@ PURPLE = $(shell tput setaf 164)
 CYAN = $(shell tput setaf 37)
 WHITE = $(shell tput sgr0)
 
-SRC =	init.c\
-		end.c\
+SRC =	end.c\
 		error.c \
 		image.c \
+		init.c\
 		main.c \
 		move.c \
 		parse_map.c \
@@ -29,13 +29,14 @@ SRC =	init.c\
 		trash.c \
 		verif.c
 
-SRC_BONUS +=	init.c\
+SRC_BONUS +=	anim_bonus.c\
 				end_bonus.c\
 				ennemy_bonus.c\
 				error.c \
 				image_bonus.c \
+				init.c\
 				main.c \
-				move.c \
+				move_bonus.c \
 				parse_map.c \
 				print_bonus.c \
 				start_mlx_bonus.c\

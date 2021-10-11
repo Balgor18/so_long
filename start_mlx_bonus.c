@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 19:51:02 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/10 11:40:15 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	key_hook(int key, t_all *all)
 	return (0);
 }
 
-void	reset_image_put_to_window(t_all *all, int move)
+void	reset_image_put_to_window(t_all *all)
 {
 	mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
 	put_texture_in_window(all);
-	print_move(all, move);
+	print_move(all);
 	mlx_loop(all->mlx.mlx);
 }
 
@@ -48,8 +48,6 @@ int	ft_close(t_all *all)
 
 int	start_mlx(t_mlx *mlx, t_all *all)
 {
-	char	*nb;
-
 	mlx->mlx = mlx_init();
 	if (!image_to_struct(mlx, all))
 		return (FAILURE);
@@ -58,13 +56,8 @@ int	start_mlx(t_mlx *mlx, t_all *all)
 	mlx_hook(mlx->mlx_win, 3, 1L << 0, key_hook, all);
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
 	put_texture_in_window(all);
-	mlx_string_put(mlx->mlx, mlx->mlx_win, 30, 30, WHITE, "Move :");
-	nb = ft_itoa(0);
-	if (!nb)
-		return (FAILURE);
-	mlx_string_put(mlx->mlx, mlx->mlx_win, 82, 30, WHITE, nb);
-	free(nb);
-	//mlx_loop_hook();
+	print_move(all);
+	mlx_loop_hook(mlx->mlx, anim_fire, all);
 	mlx_loop(mlx->mlx);
 	return (SUCCES);
 }

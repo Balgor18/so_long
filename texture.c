@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:49:32 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/06 18:32:36 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/10 11:35:36 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 #if MAC_OS
 
-void	verif_width_and_height(t_all *all, t_mlx *mlx)
+int	verif_width_and_height(t_all *all, t_mlx *mlx)
 {
-	int		width;
-	int		maxwidth;
-	int		height;
-	int		maxheight;
+	int	width;
+	int	maxwidth;
+	int	height;
+	int	maxheight;
 
 	maxwidth = WIDTH / mlx->wall.width;
 	maxheight = HEIGHT / mlx->wall.height;
 	width = ft_strlen(all->map.map[0]);
 	height = all->map.len;
+	if (width >= maxwidth || height >= maxheight)
+		return (error_msg("Not enough space for window\n"));
 	if (width < maxwidth)
 		mlx->width = width * mlx->wall.width;
 	else
@@ -33,24 +35,28 @@ void	verif_width_and_height(t_all *all, t_mlx *mlx)
 		mlx->height = height * mlx->wall.height;
 	else
 		mlx->height = HEIGHT;
+	return (TRUE);
 }
 #elif LINUX
 
-void	verif_width_and_height(t_all *all, t_mlx *mlx)
+int	verif_width_and_height(t_all *all, t_mlx *mlx)
 {
-	int		width;
-	int		maxwidth;
-	int		height;
-	int		maxheight;
+	int	width;
+	int	maxwidth;
+	int	height;
+	int	maxheight;
 
 	mlx_get_screen_size(mlx->mlx, &mlx->width, &mlx->height);
 	maxwidth = mlx->width / mlx->wall.width;
 	maxheight = mlx->height / mlx->wall.height;
 	width = ft_strlen(all->map.map[0]);
 	height = all->map.len;
+	if (width > maxwidth || height > maxheight)
+		return (error_msg("Not enough space for window "));
 	if (width < maxwidth)
 		mlx->width = width * mlx->wall.width;
 	if (height < maxheight)
 		mlx->height = height * mlx->wall.height;
+	return (TRUE);
 }
 #endif

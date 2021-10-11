@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 16:11:37 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/09 17:55:34 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	key_hook(int key, t_all *all)
 {
 	if (key == ESCAPE)
 	{
-		if (press_move(all, &all->map, 'E') != 0)
+		if (all->map.player.move != 0)
 			ft_putchar_fd('\n', 1);
 		mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
 		ft_trash(all);
@@ -33,11 +33,11 @@ int	key_hook(int key, t_all *all)
 	return (0);
 }
 
-void	reset_image_put_to_window(t_all *all, int move)
+void	reset_image_put_to_window(t_all *all)
 {
 	mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
 	put_texture_in_window(all);
-	print_move(all, move);
+	print_move(all);
 	mlx_loop(all->mlx.mlx);
 }
 

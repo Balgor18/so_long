@@ -6,12 +6,12 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:14:17 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 17:19:08 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/08 20:28:58 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/header/so_long.h"
-
+#include <stdio.h>
 int	ennemy_in_struct(t_all *all)
 {
 	if (!image_in_struct(all, &all->mlx.ennemy.enn0,

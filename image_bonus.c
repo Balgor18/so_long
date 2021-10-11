@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 21:21:37 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/10 11:02:14 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ void	image_in_window(t_mlx *mlx, char c, int line, int j)
 	if (c == 'P')
 		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
 			mlx->player.img, j * 64, (line - 1) * 64);
-	if (c == 'A')
-		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
-			mlx->ennemy.enn0.img, j * 64, line * 64);
 }
 
 void	put_texture_in_window(t_all *all)
@@ -71,6 +68,10 @@ void	put_texture_in_window(t_all *all)
 				mlx_put_image_to_window(all->mlx.mlx, all->mlx.mlx_win,
 					all->mlx.collectible.img, (j * 64) + collec_width,
 					(line * 64) + collec_height);
+			else if (all->map.map[line][j] == 'A')
+				mlx_put_image_to_window(all->mlx.mlx, all->mlx.mlx_win,
+					all->mlx.ennemy.enn0.img, (j * 64) + collec_width,
+					(line * 64) + collec_height);
 			j++;
 		}
 		line++;
@@ -85,7 +86,7 @@ void	pixel_to_image(t_img *win, t_img *i, int *win_pixel, int picture_pixel)
 	pixel = 0;
 	while (pixel < picture_pixel && *win_pixel < (win->width * win->height))
 	{
-		if (i->addr[pixel] != -16777216)
+		if (i->addr[pixel] != ALPHA)
 			win->addr[*win_pixel] = i->addr[pixel];
 		*win_pixel += 1;
 		pixel++;
@@ -152,9 +153,10 @@ int	image_to_struct(t_mlx *mlx, t_all *all)
 	if (!image_in_struct(all, &mlx->collectible, "texture/collectible.xpm",
 			mlx->mlx))
 		return (FAILURE);
-	//if (!ennemy_in_struct(all))
-	//	return (FAILURE);
-	verif_width_and_height(all, mlx);
+	if (!ennemy_in_struct(all))
+		return (FAILURE);
+	if (!verif_width_and_height(all, mlx))
+		return (FAILURE);
 	mlx->window.img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
 	mlx->window.addr = (int *)mlx_get_data_addr(mlx->window.img,
 			&mlx->window.bits_per_pixel, &mlx->window.line_length,

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trash.c                                            :+:      :+:    :+:   */
+/*   trash_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/24 12:34:41 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 11:58:16 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/08 20:15:59 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ void	free_map(t_map *map)
 		free(map->map[i++]);
 	free(map->map);
 }
+
+void	free_ennemy(t_mlx *mlx, t_ennemy *enn)
+{
+	if (enn->enn0.img)
+		mlx_destroy_image(mlx->mlx, enn->enn0.img);
+	if (enn->enn1.img)
+		mlx_destroy_image(mlx->mlx, enn->enn1.img);
+	if (enn->enn2.img)
+		mlx_destroy_image(mlx->mlx, enn->enn2.img);
+	if (enn->enn3.img)
+		mlx_destroy_image(mlx->mlx, enn->enn3.img);
+	if (enn->enn4.img)
+		mlx_destroy_image(mlx->mlx, enn->enn4.img);
+}
+
 #if LINUX
 
 void	free_mlx(t_mlx	*mlx)
@@ -39,6 +54,7 @@ void	free_mlx(t_mlx	*mlx)
 		mlx_destroy_image(mlx->mlx, mlx->window.img);
 	if (mlx->mlx_win)
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	free_ennemy(mlx, &mlx->ennemy);
 	if (mlx->mlx)
 	{
 		mlx_destroy_display(mlx->mlx);
@@ -63,6 +79,7 @@ void	free_mlx(t_mlx	*mlx)
 		mlx_destroy_image(mlx->mlx, mlx->window.img);
 	if (mlx->mlx_win)
 		mlx_destroy_window(mlx->mlx, mlx->mlx_win);
+	free_ennemy(mlx, &mlx->ennemy);
 	if (mlx->mlx)
 		free(mlx->mlx);
 }
