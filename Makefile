@@ -18,7 +18,6 @@ WHITE = $(shell tput sgr0)
 
 SRC =	end.c\
 		error.c \
-		image.c \
 		init.c\
 		main.c \
 		move.c \
@@ -29,9 +28,7 @@ SRC =	end.c\
 		trash.c \
 		verif.c
 
-SRC_BONUS +=	anim_bonus.c\
-				end_bonus.c\
-				ennemy_bonus.c\
+SRC_BONUS +=	end_bonus.c\
 				error.c \
 				image_bonus.c \
 				init.c\
@@ -54,12 +51,14 @@ ifeq ($(OS), Linux)
 	MINILIBX = -Lincludes/mlx_linux -lmlx_Linux -lXext -lX11
 	MLX = @make -C includes/mlx_linux
 	INCLUDE_ADD = -D LINUX
+	SRC += image_linux.c
 	WIDTH = 0
 	HEIGHT = 0
 else
 	MINILIBX = -Lincludes/mlx -lmlx -framework OpenGL -framework AppKit
 	MLX = @make -C includes/mlx
 	INCLUDE_ADD = -D MAC_OS
+	SRC += image.c
 	WIDTH = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$2}')
 	HEIGHT = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$4}')
 endif

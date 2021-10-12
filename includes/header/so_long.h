@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/10 11:28:06 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:06:53 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #  include "key_keyboard.h"
 #  include "../mlx/mlx.h"
 # endif
-#  include "../mlx/mlx.h"
 # include <fcntl.h>
 # include "../libft/libft.h"
 # include "../libft/gnl/get_next_line.h"
@@ -81,17 +80,6 @@ typedef struct s_img
 }				t_img;
 
 /*
-** Ennemy
-*/
-typedef struct s_ennemy
-{
-	t_img	enn0;
-	t_img	enn1;
-	t_img	enn2;
-	t_img	enn3;
-	t_img	enn4;
-}				t_ennemy;
-/*
 ** mlx
 */
 typedef struct s_mlx
@@ -106,7 +94,6 @@ typedef struct s_mlx
 	t_img		wall;
 	t_img		exit;
 	t_img		collectible;
-	t_ennemy	ennemy;
 }				t_mlx;
 
 /*

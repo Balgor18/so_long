@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 11:47:34 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/10 11:39:42 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:12:37 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	print_move(t_all *all)
 	nb_str = ft_itoa(all->map.player.move);
 	len = ft_int_len(all->map.player.move);
 	len = (len * 2) + 80;
-	if (all->map.player.move == 0)
+	if (all->map.player.move < 2)
 		mlx_string_put(all->mlx.mlx, all->mlx.mlx_win, 30, 30, WHITE, "Move :");
 	else
 		mlx_string_put(all->mlx.mlx, all->mlx.mlx_win,

@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/08 11:05:56 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:20:11 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ int	malloc_map(char *s, t_all *all)
 	return (SUCCES);
 }
 
+void	error_line(char *line)
+{
+	error_msg("Empty file\n");
+	free(line);
+	exit (EXIT_FAILURE);
+}
+
 int	split_map(char *s, t_all *all)
 {
 	char	*line;
@@ -54,11 +61,7 @@ int	split_map(char *s, t_all *all)
 	if (ret == -1)
 		return (FAILURE);
 	if (!*line)
-	{
-		error_msg("Empty file\n");
-		free(line);
-		exit (EXIT_FAILURE);
-	}
+		error_line(line);
 	while (ret > 0)
 	{
 		all->map.map[++i] = ft_strdup(line);

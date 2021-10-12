@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/10 11:40:15 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:44:03 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	start_mlx(t_mlx *mlx, t_all *all)
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
 	put_texture_in_window(all);
 	print_move(all);
-	mlx_loop_hook(mlx->mlx, anim_fire, all);
 	mlx_loop(mlx->mlx);
 	return (SUCCES);
 }

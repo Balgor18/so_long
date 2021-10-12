@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 18:01:34 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/09 17:58:55 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:11:29 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	move_up(t_all *all, t_map *map, int *move)
 			end_exit(all);
 		return ;
 	}
-	if (map->map[map->player.y - 1][map->player.x] == 'A')
-		return (end_exit(all));
 	*move += 1;
 	if (map->map[map->player.y - 1][map->player.x] == 'C')
 	{
@@ -49,8 +47,6 @@ void	move_down(t_all *all, t_map *map, int *move)
 			end_exit(all);
 		return ;
 	}
-	if (map->map[map->player.y + 1][map->player.x] == 'A')
-		return (end_exit(all));
 	*move += 1;
 	if (map->map[map->player.y + 1][map->player.x] == 'C')
 	{
@@ -77,8 +73,6 @@ void	move_left(t_all *all, t_map *map, int *move)
 		return ;
 	}
 	*move += 1;
-	if (map->map[map->player.y][map->player.x - 1] == 'A')
-		return (end_exit(all));
 	if (map->map[map->player.y][map->player.x - 1] == 'C')
 	{
 		map->collect++;
@@ -103,8 +97,6 @@ void	move_right(t_all *all, t_map *map, int *move)
 			end_exit(all);
 		return ;
 	}
-	if (map->map[map->player.y][map->player.x + 1] == 'A')
-		return (end_exit(all));
 	*move += 1;
 	if (map->map[map->player.y][map->player.x + 1] == 'C')
 	{
@@ -122,16 +114,14 @@ void	move_right(t_all *all, t_map *map, int *move)
 
 void	press_move(t_all *all, t_map *map, char m)
 {
-	static int	move = 0;
-
 	if (m == 'U')
-		move_up(all, map, &move);
+		move_up(all, map, &map->player.move);
 	else if (m == 'D')
-		move_down(all, map, &move);
+		move_down(all, map, &map->player.move);
 	else if (m == 'L')
-		move_left(all, map, &move);
+		move_left(all, map, &map->player.move);
 	else if (m == 'R')
-		move_right(all, map, &move);
+		move_right(all, map, &map->player.move);
 	if (m != 'E')
 		reset_image_put_to_window(all);
 }
