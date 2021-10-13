@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/13 09:00:13 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:12:01 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,6 @@ void	error_line(char *line)
 	exit (EXIT_FAILURE);
 }
 
-void	print_map(t_all *all)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < all->map.len)
-	{
-		printf("[%zu] = %s\n", i, all->map.map[i]);
-		i++;
-	}
-}
-
 int	split_map(char *s, t_all *all, int i)
 {
 	char	*line;
@@ -84,7 +72,6 @@ int	split_map(char *s, t_all *all, int i)
 		ret = get_next_line(fd, &line);
 	}
 	free(line);
-	print_map(all);
 	return (SUCCES);
 }
 

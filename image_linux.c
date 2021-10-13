@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/13 08:55:59 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:12:10 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,8 @@ void	put_texture_in_window(t_all *all)
 
 	j = 0;
 	line = 0;
-	printf("segfault 5.1\n");
 	while (all->map.len > line)
 	{
-		printf("[%zu] = %s\n", line, all->map.map[line]);
 		j = 0;
 		while (j < ft_strlen(all->map.map[line]))
 		{
@@ -86,10 +84,8 @@ void	put_texture_in_window(t_all *all)
 		}
 		line++;
 	}
-	printf("segfault 5.2\n");
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.mlx_win,
 		all->mlx.window.img, 0, 0);
-	printf("segfault 5.3\n");
 }
 
 int	image_to_struct(t_mlx *mlx, t_all *all)
@@ -111,13 +107,11 @@ int	image_to_struct(t_mlx *mlx, t_all *all)
 		free_mlx(&all->mlx);
 		return (FAILURE);
 	}
-	printf("Segfault 1\n");
 	mlx->window.img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
 	mlx->window.addr = (int *)mlx_get_data_addr(mlx->window.img,
 			&mlx->window.bits_per_pixel, &mlx->window.line_length,
 			&mlx->window.endian);
 	mlx->window.width = mlx->width;
 	mlx->window.height = mlx->height;
-	printf("Segfault 2\n");
 	return (SUCCES);
 }

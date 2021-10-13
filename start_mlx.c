@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/09 17:55:34 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 12:12:34 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,13 @@ int	ft_close(t_all *all)
 int	start_mlx(t_mlx *mlx, t_all *all)
 {
 	mlx->mlx = mlx_init();
-	printf("segfault 0\n");
 	if (!image_to_struct(mlx, all))
 		return (FAILURE);
-	printf("segfault 3\n");
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
-	printf("segfault 4\n");
 	mlx_do_key_autorepeatoff(mlx->mlx);
 	mlx_hook(mlx->mlx_win, 3, 1L << 0, key_hook, all);
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
-	printf("segfault 5\n");
 	put_texture_in_window(all);
-	printf("segfault 6\n");
 	mlx_loop(mlx->mlx);
 	return (SUCCES);
 }
