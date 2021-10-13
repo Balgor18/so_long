@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/12 12:20:11 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 09:00:13 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,12 @@ void	error_line(char *line)
 	exit (EXIT_FAILURE);
 }
 
-int	split_map(char *s, t_all *all)
+int	split_map(char *s, t_all *all, int i)
 {
 	char	*line;
 	int		fd;
-	int		i;
 	int		ret;
 
-	i = -1;
 	fd = open(s, O_RDONLY);
 	if (!malloc_map(s, all))
 		return (FAILURE);
@@ -89,7 +87,7 @@ void	parse_map(char *s, t_all *all)
 	if (fd > 0)
 		error_close(fd, "Error directory\n");
 	close(fd);
-	if (!split_map(s, all))
+	if (!split_map(s, all, -1))
 		exit (EXIT_FAILURE);
 	if (!verif_map(&all->map))
 	{

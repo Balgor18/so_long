@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/12 11:48:36 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 08:58:52 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,6 @@ void	put_texture_in_window(t_all *all)
 			if (all->map.map[line][j] == 'C')
 				mlx_put_image_to_window(all->mlx.mlx, all->mlx.mlx_win,
 					all->mlx.collectible.img, (j * 64) + collec_width,
-					(line * 64) + collec_height);
-			else if (all->map.map[line][j] == 'A')
-				mlx_put_image_to_window(all->mlx.mlx, all->mlx.mlx_win,
-					all->mlx.ennemy.enn0.img, (j * 64) + collec_width,
 					(line * 64) + collec_height);
 			j++;
 		}

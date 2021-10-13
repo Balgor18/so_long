@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/12 12:13:35 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 08:55:59 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,54 +29,7 @@ int	image_in_struct(t_all *all, t_img *i, char *file, void *mlx)
 	return (SUCCES);
 }
 
-void	pixel_to_image(t_img *win, t_img *i, int win_pixel, int picture_pixel)
-{
-	int	pixel;
-	int	pibis;
-
-	pibis = 0;
-	pixel = 0;
-	win_pixel--;
-	while (pixel <= picture_pixel && win_pixel <= (win->width * win->height))
-	{
-		if ((unsigned int)i->addr[pixel] != ALPHA)
-			win->addr[win_pixel] = i->addr[pixel];
-		win_pixel++;
-		pixel++;
-		if (pibis == 64)
-		{
-			win_pixel += win->width - 64;
-			pibis = 0;
-		}
-		pibis++;
-	}
-}
-
-void	bomb_pixel_to_image(t_img *win, t_img *i, int win_pixel, int p_pixel)
-{
-	int	pixel;
-	int	pibis;
-
-	pibis = 0;
-	pixel = 0;
-	win_pixel += win->width * 8;
-	win_pixel += 8;
-	while (pixel < p_pixel && win_pixel <= (win->width * win->height))
-	{
-		if ((unsigned int)i->addr[pixel] != ALPHA)
-			win->addr[win_pixel] = i->addr[pixel];
-		win_pixel++;
-		pixel++;
-		if (pibis == 48)
-		{
-			win_pixel += win->width - 48 ;
-			pibis = 0;
-		}
-		pibis++;
-	}
-}
-
-void	image_in_window(t_mlx *mlx, char c, int j, int line)
+int	calcul_win_pixel(t_mlx *mlx, int line, int j)
 {
 	int	win_pixel;
 
@@ -88,6 +41,14 @@ void	image_in_window(t_mlx *mlx, char c, int j, int line)
 			win_pixel = mlx->window.width * 64;
 		win_pixel = (line * (mlx->window.width * 64)) + (j * 64);
 	}
+	return (win_pixel);
+}
+
+void	image_in_window(t_mlx *mlx, char c, int j, int line)
+{
+	int	win_pixel;
+
+	win_pixel = calcul_win_pixel(mlx, line, j);
 	if (c == '0' || c == 'E' || c == 'C' || c == 'P')
 		pixel_to_image(&mlx->window, &mlx->ground, win_pixel - 1,
 			mlx->ground.width * mlx->ground.height);

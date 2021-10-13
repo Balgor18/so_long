@@ -51,7 +51,7 @@ ifeq ($(OS), Linux)
 	MINILIBX = -Lincludes/mlx_linux -lmlx_Linux -lXext -lX11
 	MLX = @make -C includes/mlx_linux
 	INCLUDE_ADD = -D LINUX
-	SRC += image_linux.c
+	SRC += image_linux.c image_linux_2.c
 	WIDTH = 0
 	HEIGHT = 0
 else
