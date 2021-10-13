@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/12 12:06:53 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 09:08:37 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,9 @@ int		image_in_struct(t_all *all, t_img *i, char *file, void *mlx);
 void	reset_image_put_to_window(t_all *all);
 int		image_to_struct(t_mlx *mlx, t_all *all);
 
+// -----------------  Mlx  ---------------------
+void	pixel_to_image(t_img *win, t_img *i, int win_pixel, int picture_pixel);
+void	bomb_pixel_to_image(t_img *win, t_img *i, int win_pixel, int p_pixel);
 // -----------------  Bonus  ---------------------
 int		ennemy_in_struct(t_all *all);
 int		anim_fire(t_all *all);
