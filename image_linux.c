@@ -6,12 +6,12 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/13 12:12:10 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:09:34 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/header/so_long.h"
-#include <stdio.h>
+
 int	image_in_struct(t_all *all, t_img *i, char *file, void *mlx)
 {
 	int	fd;
