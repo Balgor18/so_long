@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/13 16:09:34 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:02:05 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	image_in_window(t_mlx *mlx, char c, int j, int line)
 	win_pixel = calcul_win_pixel(mlx, line, j);
 	if (c == '0' || c == 'E' || c == 'C' || c == 'P')
 		pixel_to_image(&mlx->window, &mlx->ground, win_pixel - 1,
-			mlx->ground.width * mlx->ground.height);
+			(mlx->ground.width * mlx->ground.height));
 	if (c == '1')
 		pixel_to_image(&mlx->window, &mlx->wall, win_pixel,
 			mlx->wall.width * mlx->wall.height);
