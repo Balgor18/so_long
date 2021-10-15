@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 14:49:32 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/10 11:35:36 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/15 14:53:55 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,8 @@ int	verif_width_and_height(t_all *all, t_mlx *mlx)
 	height = all->map.len;
 	if (width >= maxwidth || height >= maxheight)
 		return (error_msg("Not enough space for window\n"));
-	if (width < maxwidth)
-		mlx->width = width * mlx->wall.width;
-	else
-		mlx->width = WIDTH;
-	if (height < maxheight)
-		mlx->height = height * mlx->wall.height;
-	else
-		mlx->height = HEIGHT;
+	mlx->width = width * mlx->wall.width;
+	mlx->height = height * mlx->wall.height;
 	return (TRUE);
 }
 #elif LINUX
@@ -52,11 +46,9 @@ int	verif_width_and_height(t_all *all, t_mlx *mlx)
 	width = ft_strlen(all->map.map[0]);
 	height = all->map.len;
 	if (width > maxwidth || height > maxheight)
-		return (error_msg("Not enough space for window "));
-	if (width < maxwidth)
-		mlx->width = width * mlx->wall.width;
-	if (height < maxheight)
-		mlx->height = height * mlx->wall.height;
+		return (error_msg("Not enough space for window\n"));
+	mlx->width = width * mlx->wall.width;
+	mlx->height = height * mlx->wall.height;
 	return (TRUE);
 }
 #endif

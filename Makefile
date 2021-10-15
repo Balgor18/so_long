@@ -104,7 +104,7 @@ norme :
 
 clean :
 	@echo "$(RED)Clean file...$(WHITE)"
-	@$(RM) $(OBJ) $(OBJ_BONUS)
+	@$(RM) *.o
 	@make -s -C includes/libft/ clean
 	@make -s -C includes/lib_color/ clean
 	$(MLX) clean
