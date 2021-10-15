@@ -55,7 +55,7 @@ int	start_mlx(t_mlx *mlx, t_all *all)
 		return (FAILURE);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
 	mlx_do_key_autorepeatoff(mlx->mlx);
-	mlx_hook(mlx->mlx_win, 3, 1L << 0, key_hook, all);
+	mlx_hook(mlx->mlx_win, 2, 1L << 0, key_hook, all);
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
 	put_texture_in_window(all);
 	mlx_loop(mlx->mlx);

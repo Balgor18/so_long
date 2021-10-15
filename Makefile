@@ -30,7 +30,6 @@ SRC =	end.c\
 
 SRC_BONUS +=	end_bonus.c\
 				error.c \
-				image_bonus.c \
 				init.c\
 				main.c \
 				move_bonus.c \
@@ -52,6 +51,7 @@ ifeq ($(OS), Linux)
 	MLX = @make -C includes/mlx_linux
 	INCLUDE_ADD = -D LINUX
 	SRC += image_linux.c image_linux_2.c
+	SRC_BONUS += image_linux.c image_linux_2.c
 	WIDTH = 0
 	HEIGHT = 0
 else
@@ -59,6 +59,7 @@ else
 	MLX = @make -C includes/mlx
 	INCLUDE_ADD = -D MAC_OS
 	SRC += image.c
+	SRC_BONUS += image.c
 	WIDTH = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$2}')
 	HEIGHT = $(shell system_profiler SPDisplaysDataType | grep "Resolution" | awk '{print $$4}')
 endif

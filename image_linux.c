@@ -50,7 +50,7 @@ void	image_in_window(t_mlx *mlx, char c, int j, int line)
 
 	win_pixel = calcul_win_pixel(mlx, line, j);
 	if (c == '0' || c == 'E' || c == 'C' || c == 'P')
-		pixel_to_image(&mlx->window, &mlx->ground, win_pixel - 1,
+		pixel_to_ground_image(&mlx->window, &mlx->ground, win_pixel - 2,
 			(mlx->ground.width * mlx->ground.height));
 	if (c == '1')
 		pixel_to_image(&mlx->window, &mlx->wall, win_pixel,
@@ -60,7 +60,7 @@ void	image_in_window(t_mlx *mlx, char c, int j, int line)
 			mlx->exit.width * mlx->exit.height);
 	if (c == 'P')
 		pixel_to_image(&mlx->window, &mlx->player,
-			win_pixel - (mlx->window.width * 64),
+			win_pixel - (mlx->window.width * 64) - 1,
 			mlx->player.width * mlx->player.height);
 	if (c == 'C')
 		bomb_pixel_to_image(&mlx->window, &mlx->collectible, win_pixel,
