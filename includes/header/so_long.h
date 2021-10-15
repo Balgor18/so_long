@@ -161,6 +161,7 @@ int		image_to_struct(t_mlx *mlx, t_all *all);
 void	pixel_to_image(t_img *win, t_img *i, int win_pixel, int picture_pixel);
 void	bomb_pixel_to_image(t_img *win, t_img *i, int win_pixel, int p_pixel);
 void	pixel_to_ground_image(t_img *win, t_img *i, int win_pxl, int pict_pxl);
+
 // -----------------  Bonus  ---------------------
 int		ennemy_in_struct(t_all *all);
 int		anim_fire(t_all *all);

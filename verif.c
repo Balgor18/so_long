@@ -21,7 +21,14 @@ int	verif_file_name(char *s)
 	while (*s != '.')
 		s++;
 	if (*s == '.' && *(s - 1) == '/')
+	{
 		s++;
+		if (*(s - 1) == '.')
+		{
+			while (*s != '.')
+				s++;
+		}
+	}
 	len = ft_strlen(s);
 	if (len < 4)
 		len = 4;
