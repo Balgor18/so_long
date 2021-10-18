@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   parse_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 10:29:57 by rchallie          #+#    #+#             */
-/*   Updated: 2021/07/08 15:56:21 by fcatinau         ###   ########.fr       */
+/*   Created: 2021/10/18 19:16:38 by fcatinau          #+#    #+#             */
+/*   Updated: 2021/10/18 19:24:02 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "includes/header/so_long.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+int	split_map2(t_all *all, char **line, int i, int fd)
+{
+	int	ret;
 
-int			get_next_line(int fd, char **line);
-void		*ft_memmove(void *dst, const void *src, size_t len);
-int			ft_is_end(char *str);
-char		*join_str(char const *char1, char const *char2, int lire);
-size_t		ft_strlen(const char *s);
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
-#endif
+	all->map.map[++i] = ft_strdup(*line);
+	/*free(line);
+	if (i == 5)
+	{
+		free(all->map.map[i]);
+		all->map.map[i] = NULL;
+	}*/
+	if (all->map.map[i] == NULL)
+	{
+		ft_gnl_trash(fd);
+		free_map(&all->map);
+		exit(EXIT_FAILURE);
+	}
+	ret = get_next_line(fd, line);
+	return (ret);
+}

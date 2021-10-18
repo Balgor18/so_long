@@ -71,15 +71,12 @@ int	lire_1(char *buffer)
 
 int	get_next_line(int fd, char **line)
 {
-	char			*buffer;
+	char			buffer[BUFFER_SIZE + 1];
 	static char		*save;
 	int				lire;
 
 	lire = 1;
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
-		return (-1);
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buffer)
 		return (-1);
 	while (!ft_is_end(save) && lire != 0)
 	{
@@ -88,10 +85,12 @@ int	get_next_line(int fd, char **line)
 			return (lire_1(buffer));
 		save = join_str(save, buffer, lire);
 	}
-	free(buffer);
 	*line = get_line(save);
 	save = ft_get_save_line(save);
 	if (lire == 0)
+	{
+		free(save);
 		return (lire);
+	}
 	return (1);
 }

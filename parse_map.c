@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/18 17:25:21 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/18 19:22:43 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	error_line(char *line)
 	free(line);
 	exit (EXIT_FAILURE);
 }
-#include <stdio.h>
+
 int	split_map(char *s, t_all *all, int i)
 {
 	char	*line;
@@ -77,24 +77,8 @@ int	split_map(char *s, t_all *all, int i)
 		error_line(line);
 	}
 	while (ret > 0)
-	{
-		all->map.map[++i] = ft_strdup(line);
-		free(line);
-		if (i == 5)
-		{
-			free(all->map.map[i]);
-			all->map.map[i] = NULL;
-			line = NULL;
-		}
-		if (all->map.map[i] == NULL)
-		{
-			free_map(&all->map);
-			return (FAILURE);
-		}
-		ret = get_next_line(fd, &line);
-	}
-	if (line)
-		free(line);
+		ret = split_map2(all, &line, i, fd);
+	free(line);
 	return (SUCCES);
 }
 

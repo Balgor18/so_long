@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "includes/header/so_long.h"
-#include <stdio.h>
+
 void	free_map(t_map *map)
 {
 	int	i;
@@ -19,8 +19,7 @@ void	free_map(t_map *map)
 	i = 0;
 	while (i < map->len)
 	{
-		//if (map->map[i])
-			free(map->map[i]);
+		free(map->map[i]);
 		i++;
 	}
 	free(map->map);

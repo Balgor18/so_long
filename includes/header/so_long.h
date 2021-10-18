@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/18 17:08:05 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/18 19:23:02 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,6 @@ typedef struct s_player
 */
 typedef struct s_map
 {
-	int			nb_ennemy;
-	int			*pos_ennemy_x;
-	int			*pos_ennemy_y;
 	char		**map;
 	int			goal;
 	int			collect;
@@ -183,7 +180,7 @@ int		error_file(char *file);
 ** ===============================================
 */
 void	parse_map(char *s, t_all *all);
-
+int		split_map2(t_all *all,char **line, int i, int fd);
 /*
 ** ===============================================
 ** ===================  Verif  ===================
@@ -201,6 +198,7 @@ int		verif_map(t_map *map);
 void	ft_trash(t_all *all);
 void	free_map(t_map *map);
 void	free_mlx(t_mlx	*mlx);
+void	ft_gnl_trash(int fd);
 
 /*
 ** ===============================================

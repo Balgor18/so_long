@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   trash2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 10:29:57 by rchallie          #+#    #+#             */
-/*   Updated: 2021/07/08 15:56:21 by fcatinau         ###   ########.fr       */
+/*   Created: 2021/10/18 19:11:05 by fcatinau          #+#    #+#             */
+/*   Updated: 2021/10/18 19:11:18 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "includes/header/so_long.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+void	ft_gnl_trash(int fd)
+{
+	int		ret;
+	char	*line;
 
-int			get_next_line(int fd, char **line);
-void		*ft_memmove(void *dst, const void *src, size_t len);
-int			ft_is_end(char *str);
-char		*join_str(char const *char1, char const *char2, int lire);
-size_t		ft_strlen(const char *s);
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
-#endif
+	ret = get_next_line(fd, &line);
+	while (ret > 0)
+	{
+		free(line);
+		ret = get_next_line(fd, &line);
+	}
+	free(line);
+}

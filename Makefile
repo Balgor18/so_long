@@ -2,7 +2,7 @@ NAME = so_long
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -rf
 
@@ -22,10 +22,12 @@ SRC =	end.c\
 		main.c \
 		move.c \
 		parse_map.c \
+		parse_map2.c \
 		print.c \
 		start_mlx.c \
 		texture.c\
 		trash.c \
+		trash2.c \
 		verif.c
 
 SRC_BONUS +=	end_bonus.c\
@@ -34,10 +36,12 @@ SRC_BONUS +=	end_bonus.c\
 				main.c \
 				move_bonus.c \
 				parse_map.c \
+				parse_map2.c \
 				print_bonus.c \
 				start_mlx_bonus.c\
 				texture.c\
 				trash_bonus.c \
+				trash2.c \
 				verif_bonus.c
 
 OBJ = ${SRC:.c=.o}
