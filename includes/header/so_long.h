@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/18 19:23:02 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/18 22:29:06 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int		error_file(char *file);
 ** ===============================================
 */
 void	parse_map(char *s, t_all *all);
-int		split_map2(t_all *all,char **line, int i, int fd);
+int		split_map2(t_all *all, int i, int fd);
 /*
 ** ===============================================
 ** ===================  Verif  ===================
