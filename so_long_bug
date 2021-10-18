@@ -1,0 +1,9 @@
+check line_in_file pour les free // good
+
+verif les close (ses a dire si close = -1 ne pas close juste exit quand besoin) // good
+
+dans free_map verif il line exist et dans se cas la free et la mettre a NULL // good
+
+char a dans le verif_bonus a degager car je ne fais pas les ennemies // good
+
+verif dans ft_trash de pas redondez le code // good

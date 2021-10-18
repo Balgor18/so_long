@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 17:08:08 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/18 15:04:09 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	verif_char_map(t_map *map, char *s, t_char_map *sc, int y)
 		if (s[i] == 'E')
 			sc->count_e++;
 		if (s[i] != 'C' && s[i] != '1' && s[i] != '0'
-			&& s[i] != 'E' && s[i] != 'P' && s[i] != 'A')
+			&& s[i] != 'E' && s[i] != 'P')
 			return (error_msg("Bad characther in map\n"));
 	}
 	return (TRUE);

@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:30:16 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/12 12:11:42 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:30:40 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	image_in_window(t_mlx *mlx, char c, int line, int j)
 void	put_texture_in_window(t_all *all)
 {
 	size_t	j;
-	size_t	line;
+	int		line;
 	int		collec_width;
 	int		collec_height;
 

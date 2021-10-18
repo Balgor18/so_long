@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/13 12:12:45 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/18 17:08:05 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ typedef struct s_map
 	char		**map;
 	int			goal;
 	int			collect;
-	size_t		len;
+	int			len;
 	t_player	player;
 }				t_map;
 
