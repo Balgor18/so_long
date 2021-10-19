@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 11:41:24 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/18 15:04:09 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:08:57 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	verif_char_map(t_map *map, char *s, t_char_map *sc, int y)
 
 int	verif_map(t_map *map)
 {
-	size_t		map_len;
+	int			map_len;
 	size_t		len;
 	t_char_map	cm;
 

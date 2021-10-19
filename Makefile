@@ -40,7 +40,7 @@ SRC_BONUS +=	end_bonus.c\
 				print_bonus.c \
 				start_mlx_bonus.c\
 				texture.c\
-				trash_bonus.c \
+				trash.c \
 				trash2.c \
 				verif_bonus.c
 

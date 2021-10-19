@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/18 22:29:06 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/19 17:28:25 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ int		error_msg(char *s);
 int		error_char(int p, int e, int c);
 void	error_close(int fd, char *s);
 int		error_file(char *file);
+int		error_malloc(int ret, char *line, t_all *all);
 
 /*
 ** ===============================================
@@ -180,7 +181,8 @@ int		error_file(char *file);
 ** ===============================================
 */
 void	parse_map(char *s, t_all *all);
-int		split_map2(t_all *all, int i, int fd);
+void	split_map2(t_all *all, int fd, char *line, int ret);
+
 /*
 ** ===============================================
 ** ===================  Verif  ===================
@@ -189,7 +191,7 @@ int		split_map2(t_all *all, int i, int fd);
 int		verif_file_name(char *s);
 int		verif_width_and_height(t_all *all, t_mlx *mlx);
 int		verif_map(t_map *map);
-
+int		check_again(int fd, char *s, t_all *all);
 /*
 ** ===============================================
 ** ===================  Trash  ===================
