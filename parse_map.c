@@ -6,12 +6,12 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/18 22:28:42 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/19 08:54:41 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/header/so_long.h"
-
+#include <stdio.h>
 int	line_in_file(char *file_name)
 {
 	int		fd;
@@ -81,7 +81,11 @@ int	split_map(char *s, t_all *all, int i)
 		all->map.map[++i] = ft_strdup(line);
 		free(line);
 		ret = split_map2(all, i, fd);
+		printf("all->map.map[%d] = %s\n", i, all->map.map[i]);
 	}
+	printf("%d %s\n", 0, all->map.map[0]);
+	printf("%d %s\n", 1, all->map.map[1]);
+	printf("%d %s\n", 2, all->map.map[2]);
 	// free(line);
 	return (SUCCES);
 }
