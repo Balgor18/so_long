@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/13 12:12:34 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/20 10:18:19 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,16 @@ int	ft_close(t_all *all)
 int	start_mlx(t_mlx *mlx, t_all *all)
 {
 	mlx->mlx = mlx_init();
+	if (!mlx->mlx)
+		return (FAILURE);
 	if (!image_to_struct(mlx, all))
 		return (FAILURE);
 	mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "so_long");
+	if (!mlx->mlx_win)
+	{
+		ft_trash(all);
+		return (FAILURE);
+	}
 	mlx_do_key_autorepeatoff(mlx->mlx);
 	mlx_hook(mlx->mlx_win, 2, 1L << 0, key_hook, all);
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);

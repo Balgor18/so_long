@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 17:39:20 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/19 17:29:38 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/20 12:50:06 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	split_map(char *s, t_all *all, int i)
 		}
 		ret = get_next_line(fd, &line);
 	}
+	close(fd);
 	free(line);
 	return (SUCCES);
 }

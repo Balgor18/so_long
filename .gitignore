@@ -3,3 +3,4 @@ so_long_bonus
 *.o
 *.a
 *.dSYM
+verif.sh
