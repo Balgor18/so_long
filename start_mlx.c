@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/20 10:18:19 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/21 17:14:07 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,21 @@ void	reset_image_put_to_window(t_all *all)
 	mlx_loop(all->mlx.mlx);
 }
 
-int	ft_close(t_all *all)
+static int	ft_close(t_all *all)
 {
 	ft_trash(all);
 	exit(0);
 	return (0);
 }
 
+static int	reset_window(t_all *all)
+{
+	mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
+	put_texture_in_window(all);
+	print_move(all);
+	mlx_loop(all->mlx.mlx);
+	return (0);
+}
 int	start_mlx(t_mlx *mlx, t_all *all)
 {
 	mlx->mlx = mlx_init();
@@ -64,6 +72,7 @@ int	start_mlx(t_mlx *mlx, t_all *all)
 	mlx_do_key_autorepeatoff(mlx->mlx);
 	mlx_hook(mlx->mlx_win, 2, 1L << 0, key_hook, all);
 	mlx_hook(mlx->mlx_win, 33, 1L << 17, ft_close, all);
+	mlx_hook(mlx->mlx_win, 15, 1L << 16, reset_window, all);
 	put_texture_in_window(all);
 	mlx_loop(mlx->mlx);
 	return (SUCCES);
