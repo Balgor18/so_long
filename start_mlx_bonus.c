@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/12 10:44:03 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/22 08:28:37 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	key_hook(int key, t_all *all)
 
 void	reset_image_put_to_window(t_all *all)
 {
+	mlx_do_key_autorepeaton(all->mlx.mlx);
 	mlx_clear_window(all->mlx.mlx, all->mlx.mlx_win);
 	put_texture_in_window(all);
 	print_move(all);
@@ -41,6 +42,7 @@ void	reset_image_put_to_window(t_all *all)
 
 int	ft_close(t_all *all)
 {
+	mlx_do_key_autorepeaton(all->mlx.mlx);
 	ft_trash(all);
 	exit(0);
 	return (0);
