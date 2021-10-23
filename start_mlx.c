@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:28:10 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/22 08:27:13 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/23 09:33:14 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static int	reset_window(t_all *all)
 	mlx_loop(all->mlx.mlx);
 	return (0);
 }
+
 int	start_mlx(t_mlx *mlx, t_all *all)
 {
 	mlx->mlx = mlx_init();
