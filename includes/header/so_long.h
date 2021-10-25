@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/19 17:28:25 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/25 09:28:22 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 # define SO_LONG_H
 
 # if LINUX
+#  define RED_CROSS 33
 #  include "key_keyboard_linux.h"
 #  include "../mlx_linux/mlx.h"
 # elif MAC_OS
+#  define RED_CROSS 17
 #  include "key_keyboard.h"
 #  include "../mlx/mlx.h"
 # endif
