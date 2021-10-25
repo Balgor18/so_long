@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:32:40 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/15 14:20:36 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/25 14:40:53 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 typedef struct s_list
 {
-	void			*content;
 	struct s_list	*next;
+	void			*content;
 }				t_list;
 
 void			*ft_memset(void *pointeur, int val, size_t size);

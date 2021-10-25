@@ -44,9 +44,9 @@ SRC_BONUS +=	end_bonus.c\
 				trash2.c \
 				verif_bonus.c
 
-OBJ = ${SRC:.c=.o}
+OBJ = ${SRC:%.c=OBJ/%.o}
 
-OBJ_BONUS = ${SRC_BONUS:.c=.o}
+OBJ_BONUS = ${SRC_BONUS:%.c=OBJ/%.o}
 
 OS = $(shell uname)
 
@@ -95,7 +95,9 @@ mlx :
 	$(MLX)
 	@echo "$(GREEN)-->[OK] $(WHITE)"
 
-%.o : %.c
+OBJ/%.o : %.c
+	@mkdir -p OBJ
+	@echo "$@"
 	@echo "$(PURPLE)Compiling: $< $(WHITE)"
 	$(CC) $(CFLAGS) -o $@ -c $? -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT) $(INCLUDE_ADD)
 	@echo "$(GREEN)[OK] $(WHITE)"
@@ -108,7 +110,7 @@ norme :
 
 clean :
 	@echo "$(RED)Clean file...$(WHITE)"
-	@$(RM) *.o
+	@$(RM) OBJ
 	@make -s -C includes/libft/ clean
 	@make -s -C includes/lib_color/ clean
 	$(MLX) clean

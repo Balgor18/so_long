@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:51:39 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/25 09:28:22 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/25 09:40:47 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@
 # define WHITE 16777215
 # define ALPHA 0xff000000
 
+/*
+** Red_Cross
+*/
+// # if LINUX
+// #  define RED_CROSS 33
+// # elif MAC_OS
+// #  define RED_CROSS 17
+// # endif
 /*
 ** ===============================================
 ** ===================  Struct  ==================

@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 14:57:46 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/07/08 16:14:14 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/10/25 10:16:59 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,16 @@ int	lire_1(char *buffer)
 int	get_next_line(int fd, char **line)
 {
 	char			buffer[BUFFER_SIZE + 1];
-	static char		*save;
+	static char		*save = NULL;
 	int				lire;
 
 	lire = 1;
-	if (fd < 0 || !line || BUFFER_SIZE <= 0)
+	if (fd < 0 || !line)
+	{
+		if (*save)
+			free(save);
 		return (-1);
+	}
 	while (!ft_is_end(save) && lire != 0)
 	{
 		lire = read(fd, buffer, BUFFER_SIZE);

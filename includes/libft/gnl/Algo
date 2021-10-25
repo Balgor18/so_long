@@ -1,0 +1,57 @@
+
+// 2 lecture with rest
+
+// verifier \n dans rest
+
+=> si \n
+
+	// malloc line + cpy
+
+	// buf = rest (\n - rest) memmove
+
+	// return line
+
+=> si no \n
+
+	// lecture
+
+	// verifier \n
+
+	=> si \n
+
+		// malloc line + cpy (size = rest +  jusqua \n)
+
+		// buf = rest (\n - buf)
+
+		// return line
+
+	=> si no \n
+
+		// add buf to list
+
+		// lecture
+
+		// verifier \n
+
+		=> si \n
+
+			// malloc line + cpy ( rest + line_size buflist_tot + jusqua \n)
+
+			// buf = rest (\n - buf)
+
+		.....
+
+
+			=> si no \n
+
+			// add buf to list
+
+			=> si no more lecture
+
+				// malloc line + cpy ( rest + line_size buflist_tot + buf_size)
+
+				// buf = NULL
+
+				// return line
+
+
