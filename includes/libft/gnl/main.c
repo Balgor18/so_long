@@ -12,10 +12,11 @@ int	main(int agc, char **agv)
 	if (agc < 2 || agc > 2)
 		return (1);
 	fd = open(agv[1], O_RDONLY);
-	while ((fd = get_next_line(fd, &line, 0)) > 0)
+	while ((fd = get_next_line(fd, &line, 0)) > 0 || line)
 	{
-		printf("|%.*s|\n", fd, line);
+		dprintf(2, "******* RETURN IS est >>%d<< |%s|\n", fd, line);
 		free(line);
 	}
+	dprintf(2, "******* RETURN IS est >>%d<< |%s|\n", fd, line);
 	return (0);
 }
