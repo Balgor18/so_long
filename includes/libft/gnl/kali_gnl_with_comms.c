@@ -2,11 +2,13 @@
 #include <unistd.h>
 #include <stdio.h>
 
+#define BUFF_SIZE 10
+
 enum e_error
 {
 	E_SUCCESS = 0,
 	E_MALLOC_FAIL = -1,
-	E_READ_FAIL = 2,
+	E_READ_FAIL = -2,
 };
 
 const char *e_message[] =
@@ -19,7 +21,7 @@ const char *e_message[] =
 typedef struct	s_gnl
 {
 	struct s_gnl	*next;
-	char			buf[10];
+	char			buf[BUFF_SIZE];
 }				t_gnl;
 
 struct	s_data
@@ -36,7 +38,7 @@ struct	s_data
 
 struct 	s_mem
 {
-	char	str[10];
+	char	str[BUFF_SIZE];
 	size_t	size;
 	int		status;
 };
@@ -47,7 +49,7 @@ void	ft_print_buffer_chains(t_gnl *gnl)
 	dprintf(2, "\n\tBUFFER LIST:\n");
 	while (gnl)
 	{
-		dprintf(2, ">>[%.10s] |%p|\n", gnl->buf, gnl->next);
+		dprintf(2, ">>[%.*s] |%p|\n", BUFF_SIZE, gnl->buf, gnl->next);
 		gnl = gnl->next;
 	}
 	dprintf(2, "--------------------------------------%s\n",  "\033[0m");
@@ -70,7 +72,9 @@ void	ft_print_data(struct s_data *data, char *line)
 
 void	ft_print_res(struct s_mem *rest)
 {
-	dprintf(2, "\tREST = (%lu) [%.127s]\n", rest->size, rest->str);
+
+	dprintf(2, "\tREST = (%lu) [%.*s]\n", rest->size, BUFF_SIZE, rest->str);
+	dprintf(2, "STATUS >%d<\n ", rest->status);
 }
 
 void	*ft_memchr(const void *s, int c, size_t n)
@@ -151,6 +155,7 @@ int	ft_lstaddnew_front(struct s_data *data)
 	t_gnl	*new_elem;
 
 	// dprintf(2, "##NEW ELEMENT\n");
+	dprintf(2, "segfault 0.2.1\n");
 	new_elem = malloc(sizeof(t_gnl));
 	if (!new_elem)
 	{
@@ -163,85 +168,94 @@ int	ft_lstaddnew_front(struct s_data *data)
 	return (1);
 }
 
-void ft_cpy_buffer_list(t_gnl **gnl, char *line)
+void ft_cpy_buffer_list_free(t_gnl **gnl, char *line, size_t len_cpy)
 {
 	t_gnl *tmp;
 
+	if (*gnl && len_cpy % BUFF_SIZE) // le premier maillon
+	{
+		ft_memcpy(line - len_cpy % BUFF_SIZE, (*gnl)->buf, len_cpy % BUFF_SIZE);
+		line -= len_cpy % BUFF_SIZE;
+		tmp = (*gnl)->next;
+		free(*gnl);
+		*gnl = tmp;
+	}
+
 	while (*gnl)
 	{
-		ft_memcpy(line - 10, (*gnl)->buf, 10);
-		line -= 10;
+		ft_memcpy(line - BUFF_SIZE, (*gnl)->buf, BUFF_SIZE);
+		line -= BUFF_SIZE;
 		tmp = (*gnl)->next;
 		free(*gnl);
 		*gnl = tmp;
 	}
 }
 
-int ft_create_newline_from_buffer(struct s_data *data, struct s_mem *rest, char **line)
-{
-	int newline_size;
-	printf("segfault 0.4.0\n");
-	newline_size = rest->size + data->line_size;
+// int ft_create_newline_from_buffer(struct s_data *data, struct s_mem *rest, char **line)
+// {
+// 	int newline_size;
+// 	printf("segfault 0.4.0\n");
+// 	newline_size = rest->size + data->line_size;
 
-	// dprintf(2, "##CREATE_BUFF >>%d<<\n", newline_size);
-	// ft_print_data(data, *line);
-	// ft_print_res(rest);
+// 	// dprintf(2, "##CREATE_BUFF >>%d<<\n", newline_size);
+// 	// ft_print_data(data, *line);
+// 	// ft_print_res(rest);
 
-	// MALLOC
-	*line = malloc(sizeof(char) * (newline_size + 1));
-	// CHECK FAILLURE
-	if (!*line)
-	{
-		ft_lstdelall(&(data->gnl));
-		data->error = E_MALLOC_FAIL;
-		return (-1);
-	}
-	// SET LAST BACKSLASH ZERO
-	(*line)[newline_size] = '\0';
+// 	// MALLOC
+// 	*line = malloc(sizeof(char) * (newline_size + 1));
+// 	// CHECK FAILLURE
+// 	if (!*line)
+// 	{
+// 		ft_lstdelall(&(data->gnl));
+// 		data->error = E_MALLOC_FAIL;
+// 		return (-1);
+// 	}
+// 	// SET LAST BACKSLASH ZERO
+// 	(*line)[newline_size] = '\0';
 
-	// COPY REST
-	ft_memcpy(*line, rest->str, rest->size);
-	printf("segfault 0.4.1\n");
-	// NEW REST
-	// dprintf(2, "#create nw copy rest\n");
-	// ft_print_data(data, *line);
-	// ft_print_res(rest);
+// 	// COPY REST
+// 	ft_memcpy(*line, rest->str, rest->size);
+// 	printf("segfault 0.4.1\n");
+// 	// NEW REST
+// 	// dprintf(2, "#create nw copy rest\n");
+// 	// ft_print_data(data, *line);
+// 	// ft_print_res(rest);
 
 
-	// COPY BUFFERS STARTING FROM THE END
-	ft_cpy_buffer_list(&(data->gnl->next), *line + rest->size + data->list_buff_size);
-	printf("segfault 0.4.2\n");
-	// COPY TILL NEWLINE FROM THE LAST BUF
-	ft_memcpy(*line + data->line_size + rest->size , data->gnl->buf, data->line_size - data->list_buff_size);
-	printf("segfault 0.4.3\n");
-	// NEW REST
-	// dprintf(2, "#create nw rest\n");
-	// ft_print_data(data, *line);
-	// ft_print_res(rest);
+// 	// COPY BUFFERS STARTING FROM THE END
+// 	ft_cpy_buffer_list(&(data->gnl->next), *line + rest->size + data->list_buff_size);
+// 	printf("segfault 0.4.2\n");
+// 	// COPY TILL NEWLINE FROM THE LAST BUF
+// 	ft_memcpy(*line + data->line_size + rest->size , data->gnl->buf, data->line_size - data->list_buff_size);
+// 	printf("segfault 0.4.3\n");
+// 	// NEW REST
+// 	// dprintf(2, "#create nw rest\n");
+// 	// ft_print_data(data, *line);
+// 	// ft_print_res(rest);
 
-	if (data->rd_size)
-	{
-		printf("%zu\ndata->ptrchr = %s\ndata->gnl->buf = %s\n", data->rd_size, data->ptrchr, data->gnl->buf);
-		printf("%p\n%p\n", data->ptrchr, data->gnl->buf);
-		printf("%zu\n", data->ptrchr - data->gnl->buf);
-		rest->size = data->rd_size - (data->ptrchr - data->gnl->buf) - 1;
-		printf("rest->size %zu\n", rest->size);
-		printf("segfault 0.4.3.0\n");
-		printf("---------\nrest->str = |%s|\ndata->ptrchr = |%s|\nrest->size %zu\n---------\n",rest->str, data->ptrchr, rest->size);
-		ft_memcpy(rest->str, data->ptrchr + 1 , rest->size);
-		printf("segfault 0.4.3.1\n");
-	}
-	else // ALL COPIED
-	{
-		rest->size = 0;
-	}
-	printf("segfault 0.4.4\n");
-	// dprintf(2, "#after nw creation\n");
-	// ft_print_data(data, *line);
-	// ft_print_res(rest);
+// 	if (data->rd_size)
+// 	{
+// 		printf("%zu\ndata->ptrchr = %s\ndata->gnl->buf = %s\n", data->rd_size, data->ptrchr, data->gnl->buf);
+// 		printf("%p\n%p\n", data->ptrchr, data->gnl->buf);
+// 		printf("%zu\n", data->ptrchr - data->gnl->buf);
+// 		rest->size = data->rd_size - (data->ptrchr - data->gnl->buf) - 1;
+// 		printf("rest->size %zu\n", rest->size);
+// 		printf("segfault 0.4.3.0\n");
+// 		printf("---------\nrest->str = |%s|\ndata->ptrchr = |%s|\nrest->size %zu\n---------\n",rest->str, data->ptrchr, rest->size);
+// 		ft_memcpy(rest->str, data->ptrchr + 1 , rest->size);
+// 		printf("segfault 0.4.3.1\n");
+// 	}
+// 	else // ALL COPIED
+// 	{
+// 		rest->size = 0;
+// 	}
+// 	printf("segfault 0.4.4\n");
+// 	// dprintf(2, "#after nw creation\n");
+// 	// ft_print_data(data, *line);
+// 	// ft_print_res(rest);
 
-	return (newline_size);
-}
+// 	return (newline_size);
+// }
 
 int ft_no_newline_in_rest(struct s_data *data, struct s_mem *rest, char **line)
 {
@@ -269,7 +283,7 @@ int ft_no_newline_in_rest(struct s_data *data, struct s_mem *rest, char **line)
 	}
 
 	//MALLOC
-	*line = malloc(sizeof(char *) * (data->line_size + 1));
+	*line = malloc(sizeof(char) * (data->line_size + 1));
 	// CHECK FAILURE
 	if (!*line)
 	{
@@ -290,68 +304,81 @@ int ft_no_newline_in_rest(struct s_data *data, struct s_mem *rest, char **line)
 
 }
 
-int ft_no_buffer_in_read(struct s_data *data, struct s_mem *rest, int fd)
+int	ft_no_buffer_in_read(struct s_data *data, struct s_mem *rest, int fd)
 {
-	int ret;
+	int	ret;
 
-	// dprintf(2, "TO_BE_READ >>%zu<<\n", data->rd_size);
-	ret = read(fd, data->gnl->buf, 10);
-
-	// dprintf(2, "READED >>%i<<\n", ret);
-	// IF READ ERROR
-	if (ret < 0)
+	dprintf(2, "segfault 0.2.2\n");
+	ret = read(fd, data->gnl->buf, BUFF_SIZE);
+	if (ret == -1)
 	{
 		data->error = E_READ_FAIL;
-		return (0);
+		return (-1);
 	}
-	// ft_print_data(data, NULL);
-	data->rd_size = ret;
-	// IF LAST READ TODO => DO NOT KNOW HOW TO FINISH;
-	if (ret < 10)
+	else if(ret > 0)
 	{
-		rest->status = 1;
-		return (ret != 0);
+		data->rd_size = ret;
 	}
-	return (1);
+	else if (ret == 0)// EOF
+	{
+		data->rd_size = 0;
+		rest->status = 1;
+	}
+	return (data->rd_size);
 }
 
-int ft_no_newline_in_buffer(struct s_data *data, struct s_mem *rest)
+int	ft_newline_in_buffer(struct s_data *data, struct s_mem *rest, char **line)
 {
+	dprintf(2, "segfault 0.2.3\n");
 	data->ptrchr = ft_memchr(data->gnl->buf, '\n', data->rd_size);
+	// data->ptrchr = 0x0
+	// 	data->rd_size = data->rd_size - (data->ptrchr - data->gnl->buf) - 1;
+	ft_print_data(data, *line);
+	ft_print_res(rest);
 
-	printf("--------\nhey |%s|\nstatus = %d\n--------\n", data->ptrchr, rest->status);
-	// IF no n and not EOF
-	if (data->ptrchr && rest->status)
+	if (rest->status)
 	{
-		data->line_size += data->rd_size;
-		dprintf(2, "NO \\N U EOF NW_BUFF \n");
-		// ft_print_data(data, NULL);
-		// ft_print_res(rest);
+		dprintf(2, "segfault 0.2.3.0\n");
+		data->line_size += data->list_buff_size + rest->size;
+		*line = malloc(sizeof(char) * (data->line_size + 1));
+		// CHECK FAILURE
+		if (!*line)
+		{
+			data->error = E_MALLOC_FAIL;
+			return (-1);
+		}
+		ft_memcpy(*line, rest->str, rest->size);
+		(*line)[data->line_size] = '\0';
 
+		ft_cpy_buffer_list_free(&(data->gnl), *line + data->line_size - 1, data->line_size - rest->size);
+		*rest = (struct s_mem){};
 		return (1);
 	}
-	// IF \n
 	else if (data->ptrchr)
 	{
-		data->line_size += data->ptrchr - data->gnl->buf;
-		data->rd_size = data->rd_size - (data->ptrchr - data->gnl->buf) - 1;
-		dprintf(2, "\\N NW_BUFF \n");
-		// ft_print_data(data, NULL);
-		// ft_print_res(rest);
-		return (0);
+		dprintf(2, "segfault 0.2.3.1\n");
+		data->line_size += data->list_buff_size + (data->ptrchr - data->gnl->buf) + rest->size;
+		*line = malloc(sizeof(char) * (data->line_size + 1));
+		// CHECK FAILURE
+		if (!*line)
+		{
+			data->error = E_MALLOC_FAIL;
+			return (-1);
+		}
+		ft_memcpy(*line, rest->str, rest->size);
+		(*line)[data->line_size] = '\0';
+		ft_memcpy(rest->str, data->ptrchr + 1, data->rd_size - (data->ptrchr - data->gnl->buf) - 1);
+		ft_cpy_buffer_list_free(&(data->gnl), *line + data->line_size, data->line_size - rest->size);
+		rest->size = data->rd_size - (data->ptrchr - data->gnl->buf) - 1;
+		return (1);
 	}
-	// EOF
-	else if (rest->status)
+	else
 	{
-		data->line_size += data->rd_size;
-		data->rd_size = 0;
-		dprintf(2, "EOF NW_BUFF \n");
-		// ft_print_data(data, NULL);
-		// ft_print_res(rest);
-		return(0);
+		dprintf(2, "segfault 0.2.3.2\n");
+
+		//MAYBE SOMETHING TO DO ?
 	}
-	// exit(127);
-	return (1);
+	return (0);
 }
 
 int	get_next_line(int fd, char **line , int reset)
@@ -388,7 +415,7 @@ int	get_next_line(int fd, char **line , int reset)
 		while (!data.error // CHECK ERROR :
 			&& ft_lstaddnew_front(&data) // INIT BUFFER -> stop if error
 			&& ft_no_buffer_in_read(&data, &rest, fd) // READ IN BUFFER -> stop if error || no read
-			&& ft_no_newline_in_buffer(&data, &rest)) // SEARCH IN BUFFER -> stop if error || newline
+			&& !ft_newline_in_buffer(&data, &rest, line)) // SEARCH IN BUFFER -> stop if error || newline
 			{
 				data.list_buff_size += data.rd_size;
 			}
@@ -396,7 +423,7 @@ int	get_next_line(int fd, char **line , int reset)
 		// ft_print_res(&rest);
 		// ft_print_data(&data, *line);
 		// Check if error
-		printf("%zu\ndata->ptrchr = %s\ndata->gnl->buf = %s\n", data.rd_size, data.ptrchr, data.gnl->buf);
+		// printf("%zu\ndata->ptrchr = %s\ndata->gnl->buf = %s\n", data.rd_size, data.ptrchr, data.gnl->buf);
 		printf("segfault 0.3\n");
 		if (data.error)
 		{
@@ -414,7 +441,7 @@ int	get_next_line(int fd, char **line , int reset)
 		}
 		printf("segfault 0.4\n");
 		//CREATE THE LINE or return ERROR
-		return (ft_create_newline_from_buffer(&data, &rest, line));
+		return (data.line_size);
 	}
 	printf("segfault 1\n");
 	return (0);
