@@ -260,8 +260,9 @@ void ft_cpy_buffer_list_free(t_gnl **gnl, char *line, size_t len_cpy)
 int ft_no_newline_in_rest(struct s_data *data, struct s_mem *rest, char **line)
 {
 	// CHECK newline
+	printf("Il se passe un truc assez bizarre\n");
 	data->ptrchr = ft_memchr(rest->str, '\n', rest->size);
-
+	printf("Il s'est passe un truc assez bizarre\n");
 	// dprintf(2, "NW_REST\n");
 	// ft_print_data(data, *line);
 	// ft_print_res(rest);
@@ -369,6 +370,7 @@ int	ft_newline_in_buffer(struct s_data *data, struct s_mem *rest, char **line)
 		(*line)[data->line_size] = '\0';
 		ft_memcpy(rest->str, data->ptrchr + 1, data->rd_size - (data->ptrchr - data->gnl->buf) - 1);
 		ft_cpy_buffer_list_free(&(data->gnl), *line + data->line_size, data->line_size - rest->size);
+		printf("-----------\nrest->size = %zu\ndata->rd->size = %zu\ndata->ptrchr = %zu\ndata->gnl->buf = %zu\ndata->ptrchr -data->gnl->buf = %zu - %zu\n-----------\n",rest->size, data->rd_size, data->ptrchr, data->gnl->buf, data->ptrchr - data->gnl->buf);
 		rest->size = data->rd_size - (data->ptrchr - data->gnl->buf) - 1;
 		return (1);
 	}
