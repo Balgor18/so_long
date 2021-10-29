@@ -96,7 +96,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
-	printf("------\nenter memcpyn\ndest = |%s|\nsrc = |%s|\n------\n",dest, src);
 	if (!dest && !src) // <= Que ce passe t-il if dest est vide? mais pas source. Proteger ou ne pas proteger tel est la question.
 		return (NULL);
 //	dprintf(2, "++++++DEST >%d< ++++++SRC >%d< ++++++++SIZE >%lu< +++++=\n", ((char *)dest)[0],((const char *)src)[0], n);
@@ -260,15 +259,15 @@ void ft_cpy_buffer_list_free(t_gnl **gnl, char *line, size_t len_cpy)
 int ft_no_newline_in_rest(struct s_data *data, struct s_mem *rest, char **line)
 {
 	// CHECK newline
-	printf("Il se passe un truc assez bizarre\n");
 	data->ptrchr = ft_memchr(rest->str, '\n', rest->size);
-	printf("Il s'est passe un truc assez bizarre\n");
 	// dprintf(2, "NW_REST\n");
 	// ft_print_data(data, *line);
 	// ft_print_res(rest);
 
 	// IF no \n and not EOF
-	if (!data->ptrchr && rest->status)
+	printf("data->ptrchr = %s\nrest->status = %d\n", data->ptrchr, rest->status);
+	// if (!data->ptrchr && rest->status)
+	if (!data->ptrchr )//&& rest->status)
 		return (1);
 	// IF \n
 	else if (data->ptrchr)
@@ -296,9 +295,8 @@ int ft_no_newline_in_rest(struct s_data *data, struct s_mem *rest, char **line)
 	ft_memcpy(*line, rest->str, data->line_size);
 	(*line)[data->line_size] = '\0';
 
-
 	// NEW REST => rest_size - strlen(line_size) - '\n'
-	rest->size = rest->size - data->line_size - 1;
+	rest->size = rest->size - data->line_size;
 	ft_memmove(rest->str, rest->str + data->line_size + 1, rest->size);
 
 	return (0);
@@ -369,15 +367,16 @@ int	ft_newline_in_buffer(struct s_data *data, struct s_mem *rest, char **line)
 		ft_memcpy(*line, rest->str, rest->size);
 		(*line)[data->line_size] = '\0';
 		ft_memcpy(rest->str, data->ptrchr + 1, data->rd_size - (data->ptrchr - data->gnl->buf) - 1);
-		ft_cpy_buffer_list_free(&(data->gnl), *line + data->line_size, data->line_size - rest->size);
-		printf("-----------\nrest->size = %zu\ndata->rd->size = %zu\ndata->ptrchr = %zu\ndata->gnl->buf = %zu\ndata->ptrchr -data->gnl->buf = %zu - %zu\n-----------\n",rest->size, data->rd_size, data->ptrchr, data->gnl->buf, data->ptrchr - data->gnl->buf);
 		rest->size = data->rd_size - (data->ptrchr - data->gnl->buf) - 1;
+		ft_cpy_buffer_list_free(&(data->gnl), *line + data->line_size, data->line_size - rest->size);
+		// printf("-----------\nrest->size = %zu\ndata->rd->size = %zu\ndata->ptrchr = %zu\ndata->gnl->buf = %zu\ndata->ptrchr -data->gnl->buf = %zu - %zu\n-----------\n",rest->size, data->rd_size, data->ptrchr, data->gnl->buf, data->ptrchr - data->gnl->buf);
+		// rest->size = data->rd_size - (data->ptrchr - data->gnl->buf) - 1;
+
 		return (1);
 	}
 	else
 	{
 		dprintf(2, "segfault 0.2.3.2\n");
-
 		//MAYBE SOMETHING TO DO ?
 	}
 	return (0);
