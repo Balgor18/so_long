@@ -5,6 +5,7 @@
 #include <sys/errno.h>
 #include "get_next_line.h"
 
+// https://github.com/Mazoise/42TESTERS-GNL.git
 enum e_error
 {
 	E_SUCCESS = 0,
