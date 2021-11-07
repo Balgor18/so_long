@@ -67,6 +67,7 @@ void	ft_cpy_buffer_list_free(t_gnl **gnl, char *line, size_t len_cpy)
 		free(*gnl);
 		*gnl = tmp;
 	}
+	free(*gnl);
 }
 
 int	ft_no_newline_in_rest(struct s_data *data, struct s_mem *rest, char **line)

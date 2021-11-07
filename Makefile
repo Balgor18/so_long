@@ -2,7 +2,7 @@ NAME = so_long
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 RM = rm -rf
 
@@ -27,7 +27,6 @@ SRC =	end.c\
 		start_mlx.c \
 		texture.c\
 		trash.c \
-		trash2.c \
 		verif.c
 
 SRC_BONUS +=	end_bonus.c\
@@ -97,7 +96,6 @@ mlx :
 
 OBJ/%.o : %.c
 	@mkdir -p OBJ
-	@echo "$@"
 	@echo "$(PURPLE)Compiling: $< $(WHITE)"
 	$(CC) $(CFLAGS) -o $@ -c $? -D WIDTH=$(WIDTH) -D HEIGHT=$(HEIGHT) $(INCLUDE_ADD)
 	@echo "$(GREEN)[OK] $(WHITE)"

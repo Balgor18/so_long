@@ -18,10 +18,12 @@ int	split_map(char *s, t_all *all, int i)
 	int		fd;
 	int		ret;
 
-	fd = open(s, O_RDONLY);
-	if (!check_again(fd, s, all))
+	if (!check_again(s, all))
 		return (FAILURE);
-	ret = get_next_line(fd, &line);
+	fd = open(s, O_RDONLY);
+	if (fd == -1)
+		return (FAILURE);
+	ret = get_next_line(fd, &line, 0);
 	if (!error_malloc(ret, line, all))
 		return (FAILURE);
 	while (ret > 0)
@@ -29,11 +31,11 @@ int	split_map(char *s, t_all *all, int i)
 		all->map.map[++i] = line;
 		if (all->map.map[i] == NULL)
 		{
-			ft_gnl_trash(fd);
+			get_next_line(fd, &line, 1);
 			free_map(&all->map);
 			return (FAILURE);
 		}
-		ret = get_next_line(fd, &line);
+		ret = get_next_line(fd, &line, 0);
 	}
 	close(fd);
 	return (SUCCES);

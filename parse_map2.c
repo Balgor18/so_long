@@ -22,7 +22,7 @@ static int	line_in_file(char *file_name)
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &line, 0) > 0)
 	{
 		nb_line++;
 		free(line);
@@ -30,6 +30,7 @@ static int	line_in_file(char *file_name)
 	if (line)
 		free(line);
 	close(fd);
+	get_next_line(fd, &line, 1);
 	return (nb_line);
 }
 
@@ -59,10 +60,8 @@ static void	error_line(char *line)
 	exit (EXIT_FAILURE);
 }
 
-int	check_again(int fd, char *s, t_all *all)
+int	check_again(char *s, t_all *all)
 {
-	if (fd == -1)
-		return (FAILURE);
 	if (!malloc_map(s, all))
 		return (FAILURE);
 	return (SUCCES);

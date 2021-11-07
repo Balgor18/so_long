@@ -12,8 +12,6 @@
 
 #include "get_next_line.h"
 
-#include "get_next_line.h"
-
 int	ft_no_buffer_in_read(struct s_data *data, struct s_mem *rest, int fd)
 {
 	int	ret;
@@ -93,6 +91,7 @@ int	get_next_line_2(char **line, struct s_data *data, struct s_mem *rest)
 	}
 	else if (!rest->size && !data->rd_size && !data->line_size)
 	{
+		ft_lstdelall(&(data->gnl));
 		*line = NULL;
 		return (0);
 	}
@@ -107,7 +106,11 @@ int	get_next_line(int fd, char **line, int reset)
 	data = (struct s_data){0};
 	*line = NULL;
 	if (reset)
+	{
 		rest = (struct s_mem){};
+		ft_lstdelall(&(data.gnl));
+		free(data.gnl);
+	}
 	if (rest.size && !ft_no_newline_in_rest(&data, &rest, line))
 		return (data.line_size);
 	else if (!rest.status)
@@ -118,5 +121,6 @@ int	get_next_line(int fd, char **line, int reset)
 			data.list_size += data.rd_size;
 		return (get_next_line_2(line, &data, &rest));
 	}
+
 	return (0);
 }

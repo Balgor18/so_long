@@ -201,7 +201,7 @@ void	split_map2(t_all *all, int fd, char *line, int ret);
 int		verif_file_name(char *s);
 int		verif_width_and_height(t_all *all, t_mlx *mlx);
 int		verif_map(t_map *map);
-int		check_again(int fd, char *s, t_all *all);
+int		check_again(char *s, t_all *all);
 /*
 ** ===============================================
 ** ===================  Trash  ===================
@@ -210,7 +210,6 @@ int		check_again(int fd, char *s, t_all *all);
 void	ft_trash(t_all *all);
 void	free_map(t_map *map);
 void	free_mlx(t_mlx	*mlx);
-void	ft_gnl_trash(int fd);
 
 /*
 ** ===============================================
