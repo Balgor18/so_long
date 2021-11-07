@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 14:44:07 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/13 16:09:44 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/01/21 14:48:30 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <fcntl.h>
 
 int			get_next_line(int fd, char **line);

@@ -6,15 +6,15 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:35:06 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/09/15 14:21:41 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/05/26 17:15:14 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *c)
+int	ft_strlen(char *c)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (!c)

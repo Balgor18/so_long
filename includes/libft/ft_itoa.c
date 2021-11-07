@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:34:19 by fcatinau          #+#    #+#             */
-/*   Updated: 2021/10/07 15:54:26 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/05/29 16:46:32 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_len(int tmp)
 	int	len;
 
 	len = 2;
-	while (tmp >= 10)
+	while (tmp > 10)
 	{
 		tmp /= 10;
 		len++;
@@ -51,9 +51,8 @@ char	*ft_itoa(int n)
 	if (str == NULL)
 		return (NULL);
 	str[--len] = '\0';
-	while (len > 0)
+	while (len--)
 	{
-		len--;
 		str[len] = n % 10 + '0';
 		n = n / 10;
 	}
