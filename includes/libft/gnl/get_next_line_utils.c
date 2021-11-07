@@ -40,11 +40,11 @@ int	ft_lstaddnew_front(struct s_data *data)
 	return (1);
 }
 
-void	ft_cpy_buffer_list_free(t_gnl **gnl, char *line, size_t len_cpy)
+void	ft_cpy_buffer_list_free(t_gnl **gnl, char *line, size_t le_py)
 {
 	t_gnl	*tmp;
 
-	if (*(*gnl)->buf == '\0' && (len_cpy % BUFF_SIZE) != 0)
+	if (*(*gnl)->buf == '\0' && (le_py % BUFF_SIZE) != 0)
 	{
 		tmp = (*gnl)->next;
 		free(*gnl);
@@ -52,9 +52,8 @@ void	ft_cpy_buffer_list_free(t_gnl **gnl, char *line, size_t len_cpy)
 	}
 	if (*gnl)
 	{
-		ft_memcpy(line - (len_cpy % BUFF_SIZE), (*gnl)->buf,
-			len_cpy % BUFF_SIZE);
-		line -= len_cpy % BUFF_SIZE;
+		ft_memcpy(line - (le_py % BUFF_SIZE), (*gnl)->buf, le_py % BUFF_SIZE);
+		line -= le_py % BUFF_SIZE;
 		tmp = (*gnl)->next;
 		free(*gnl);
 		*gnl = tmp;

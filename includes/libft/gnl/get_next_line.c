@@ -121,6 +121,5 @@ int	get_next_line(int fd, char **line, int reset)
 			data.list_size += data.rd_size;
 		return (get_next_line_2(line, &data, &rest));
 	}
-
 	return (0);
 }
