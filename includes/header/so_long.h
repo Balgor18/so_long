@@ -183,7 +183,7 @@ int		error_msg(char *s);
 int		error_char(int p, int e, int c);
 void	error_close(int fd, char *s);
 int		error_file(char *file);
-int		error_malloc(int ret, char *line, t_all *all);
+int		error_malloc(int ret, char *line, t_all *all, int fd);
 
 /*
 ** ===============================================

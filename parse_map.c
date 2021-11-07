@@ -24,7 +24,7 @@ int	split_map(char *s, t_all *all, int i)
 	if (fd == -1)
 		return (FAILURE);
 	ret = get_next_line(fd, &line, 0);
-	if (!error_malloc(ret, line, all))
+	if (!error_malloc(ret, line, all, fd))
 		return (FAILURE);
 	while (ret > 0)
 	{

@@ -67,12 +67,13 @@ int	check_again(char *s, t_all *all)
 	return (SUCCES);
 }
 
-int	error_malloc(int ret, char *line, t_all *all)
+int	error_malloc(int ret, char *line, t_all *all, int fd)
 {
 	if (ret == -1)
 		return (FAILURE);
-	if (!*line)
+	if (!ret)
 	{
+		close (fd);
 		free(all->map.map);
 		error_line(line);
 	}
