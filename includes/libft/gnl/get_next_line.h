@@ -6,7 +6,7 @@
 /*   By: fcatinau <fcatinau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:29:57 by rchallie          #+#    #+#             */
-/*   Updated: 2021/07/08 15:56:21 by fcatinau         ###   ########.fr       */
+/*   Updated: 2021/12/10 18:28:04 by fcatinau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct s_mem
 	char	str[BUFF_SIZE];
 	size_t	size;
 	int		status;
-}		t_mem;
+};
 
 int		get_next_line(int fd, char **line, int reset);
 // int		get_next_line(int fd, char **line);
